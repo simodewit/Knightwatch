@@ -8,23 +8,24 @@ public class SpawningNPC : MonoBehaviour
     public int[] enemiesToSpawn;
     public GameObject[] placesToSpawn;
     public GameObject[] enemies; 
+    public bool[] hasCompletedSpawning;
     public float timer;
     public Timer timerScript;
-
-    private bool[] hasCompletedSpawning;
 
     public void Start()
     {
         timerScript = GetComponent<Timer>();
+        timerScript.Init();
     }
 
     public void Update()
     {
+        timerScript.DoUpdate();
         timer = timerScript.timer;
 
         for (int i = 0; i < timeToSpawn.Length; i++)
         {
-            if(timeToSpawn[i] <= timer)
+            if(timeToSpawn[i] >= timer)
             {
                 if(hasCompletedSpawning[i] == false)
                 {

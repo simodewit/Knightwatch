@@ -9,18 +9,10 @@ public class Timer : MonoBehaviour
     public bool buttonIsPressed;
     public float timer;
 
-    private bool giveTimeFromArray;
-
-    public void Update()
+    public void DoUpdate()
     {
         if(buttonIsPressed == true)
         {
-            if(giveTimeFromArray == false)
-            {
-                giveTimeFromArray = true;
-                timer = timePerLevel[level];
-                //hier de knop ui uit zetten
-            }
             timer -= Time.deltaTime;
         }
 
@@ -29,5 +21,10 @@ public class Timer : MonoBehaviour
             timer = 0;
             buttonIsPressed = false;
         }
+    }
+
+    public void Init()
+    {
+        timer = timePerLevel[level];
     }
 }
