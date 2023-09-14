@@ -30,7 +30,6 @@ public class NPCScript : MonoBehaviour
     {
         NavMesh.CalculatePath(startPosition, castle.position, areaMask, path);
         agent.SetPath(path);
-        NavMeshBuilder.BuildNavMesh()
     }
 
 
