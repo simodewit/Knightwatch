@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class SpawningNPC : MonoBehaviour
 {
-    public GameObject[] placesToSpawn;
     public LevelDetails levelDetails;
     public float timer;
     public Timer timerScript;
+    public List<GameObject> currentAliveEnemys = new List<GameObject>();
 
     public void Start()
     {
@@ -29,20 +29,28 @@ public class SpawningNPC : MonoBehaviour
         {
             if (levelDetails.spawnDescriptions[i].timeToSpawn >= timer)
             {
-                for (int j = 0; j < levelDetails.spawnDescriptions[i].enemiesToSpawn; j++)
-                {
-                    int indexForEnemyType = Random.Range(0, levelDetails.spawnDescriptions[i].enemies.Length);
-                    GameObject enemy = Instantiate(levelDetails.spawnDescriptions[i].enemies[indexForEnemyType]);
-                    int indexForPlaceToSpawn = Random.Range(0, placesToSpawn.Length);
-                    enemy.transform.position = placesToSpawn[indexForPlaceToSpawn].transform.position;
-                    yield return new WaitForSeconds(levelDetails.spawnDescriptions[i].spawnInterval);
-                }
-
                 if (levelDetails.notImportant.hasCompletedSpawning[i] == false)
                 {
                     levelDetails.notImportant.hasCompletedSpawning[i] = true;
+
+                    for (int j = 0; j < levelDetails.spawnDescriptions[i].enemiesToSpawn; j++)
+                    {
+                        int indexForEnemyType = Random.Range(0, levelDetails.spawnDescriptions[i].enemies.Length);
+                        GameObject enemy = Instantiate(levelDetails.spawnDescriptions[i].enemies[indexForEnemyType]);
+                        int indexForPlaceToSpawn = Random.Range(0, spawnPlaces[i].placesToSpawn.Length);
+                        enemy.transform.position = spawnPlaces[i].placesToSpawn[indexForPlaceToSpawn].transform.position;
+                        currentAliveEnemys.Add(enemy);
+                        yield return new WaitForSeconds(levelDetails.spawnDescriptions[i].spawnInterval);
+                    }
                 }
             }
         }
     }
+    public SpawnPlaces[] spawnPlaces;
+}
+
+[System.Serializable]
+public class SpawnPlaces
+{
+    public GameObject[] placesToSpawn;
 }

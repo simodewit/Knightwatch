@@ -8,6 +8,7 @@ public class Timer : MonoBehaviour
     public int level;
     public bool buttonIsPressed;
     public float timer;
+    public GameObject button;
 
     public void DoUpdate()
     {
@@ -15,16 +16,16 @@ public class Timer : MonoBehaviour
         {
             timer -= Time.deltaTime;
         }
-
-        if(timer <= 0)
-        {
-            timer = 0;
-            buttonIsPressed = false;
-        }
     }
 
     public void Init()
     {
         timer = timePerLevel[level];
+    }
+
+    public void ButtonPress()
+    {
+        buttonIsPressed = true;
+        button.SetActive(false);
     }
 }
