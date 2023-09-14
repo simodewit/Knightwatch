@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class SpawningNPC : MonoBehaviour
 {
-    public int[] timeToSpawn;
-    public int[] enemiesToSpawn;
     public GameObject[] placesToSpawn;
-    public GameObject[] enemies; 
-    public bool[] hasCompletedSpawning;
+    public LevelDetails levelDetails;
     public float timer;
     public Timer timerScript;
 
@@ -20,23 +17,30 @@ public class SpawningNPC : MonoBehaviour
 
     public void Update()
     {
+        StartCoroutine(spawner());
+    }
+
+    public IEnumerator spawner()
+    {
         timerScript.DoUpdate();
         timer = timerScript.timer;
 
-        for (int i = 0; i < timeToSpawn.Length; i++)
+        for (int i = 0; i < levelDetails.spawnDescriptions.Length; i++)
         {
-            if(timeToSpawn[i] >= timer)
+            if (levelDetails.spawnDescriptions[i].timeToSpawn >= timer)
             {
-                if(hasCompletedSpawning[i] == false)
+                for (int j = 0; j < levelDetails.spawnDescriptions[i].enemiesToSpawn; j++)
                 {
-                    for (int j = 0; j < enemiesToSpawn[i]; j++)
-                    {
-                        int indexForEnemyType = Random.Range(0, enemies.Length);
-                        GameObject enemy = Instantiate(enemies[indexForEnemyType]);
-                        int indexForPlaceToSpawn = Random.Range(0, placesToSpawn.Length);
-                        enemy.transform.position = placesToSpawn[indexForPlaceToSpawn].transform.position;
-                    }
-                    hasCompletedSpawning[i] = true;
+                    int indexForEnemyType = Random.Range(0, levelDetails.spawnDescriptions[i].enemies.Length);
+                    GameObject enemy = Instantiate(levelDetails.spawnDescriptions[i].enemies[indexForEnemyType]);
+                    int indexForPlaceToSpawn = Random.Range(0, placesToSpawn.Length);
+                    enemy.transform.position = placesToSpawn[indexForPlaceToSpawn].transform.position;
+                    yield return new WaitForSeconds(levelDetails.spawnDescriptions[i].spawnInterval);
+                }
+
+                if (levelDetails.notImportant.hasCompletedSpawning[i] == false)
+                {
+                    levelDetails.notImportant.hasCompletedSpawning[i] = true;
                 }
             }
         }

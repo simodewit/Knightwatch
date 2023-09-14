@@ -7,9 +7,18 @@
             "actions": [
                 {
                     "name": "Movement",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "c1bf31b7-72f6-440e-abcc-d131976b78d3",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "mouse",
+                    "type": "PassThrough",
+                    "id": "6e583480-ef98-44c8-a608-6a0b5c35f7c0",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -17,9 +26,9 @@
             ],
             "bindings": [
                 {
-                    "name": "Horizontal",
-                    "id": "f16b2228-edf6-4f4f-acbc-46d8fe2fd34b",
-                    "path": "1DAxis",
+                    "name": "2D Vector",
+                    "id": "54fc1f88-22e7-4748-912a-edb4d97a7cf1",
+                    "path": "2DVector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -28,41 +37,8 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "negative",
-                    "id": "93ec6776-8e7b-4a71-a78b-a952ad232e1d",
-                    "path": "<Keyboard>/a",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "e88d794a-feda-41bc-949d-9e3ccf628e43",
-                    "path": "<Keyboard>/d",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "Vertical",
-                    "id": "d82dc4e8-80d6-40fc-abb5-e9894cf063f1",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Movement",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "negative",
-                    "id": "d13226dd-e608-47d5-a59b-a5fb22f6bb59",
+                    "name": "up",
+                    "id": "c459ca5f-1cee-4057-a6c7-63d5ffa27b8e",
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
@@ -72,8 +48,8 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "positive",
-                    "id": "dd915f92-c7bb-4bc3-9a8c-0dec63373214",
+                    "name": "down",
+                    "id": "dc06d989-9d7a-4879-865a-c510a0dd46a2",
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
@@ -81,6 +57,39 @@
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "075b36d3-4f70-451b-9009-6ebb8caf8795",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "49d3fc33-4568-4744-b96e-6c1baf21864a",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "5895db2c-5b0e-4dc4-b704-027b4a000221",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "mouse",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
