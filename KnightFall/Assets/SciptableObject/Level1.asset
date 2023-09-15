@@ -20,4 +20,4 @@ MonoBehaviour:
     - {fileID: 1570482771188727590, guid: c8f215c3f8afbd145bd5e1687141039f, type: 3}
     - {fileID: 1570482771188727590, guid: a2d174c51eb62c04da4c1d5b4caab37b, type: 3}
   notImportant:
-    hasCompletedSpawning: 01
+    hasCompletedSpawning: 010000

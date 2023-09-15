@@ -8,19 +8,15 @@ public class Movement : MonoBehaviour
     public float moveSpeed;
     public float rotateSpeed;
 
-    private Vector3 lookRotation; 
-    private Rigidbody rb;
-    private InputMaster input;
-    private InputAction move;
-    private Vector3 movement;
+    public Vector3 lookRotation; 
+    public Rigidbody rb;
+    public InputMaster input;
+    public InputAction move;
+    public Vector3 movement;
 
     private void Awake()
     {
         input = new InputMaster();
-    }
-
-    public void Start()
-    {
         rb = GetComponent<Rigidbody>();
     }
 
@@ -37,7 +33,12 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
+        movement.x = move.ReadValue<Vector2>().x;
+        movement.z = move.ReadValue<Vector2>().y;
+        movement.y = 0;
+
         lookRotation = new Vector3 (movement.x, 0, movement.z);
+        lookRotation.Normalize();
 
         if (lookRotation != Vector3.zero)
         {
@@ -48,9 +49,7 @@ public class Movement : MonoBehaviour
 
     public void FixedUpdate()
     {
-        movement.x += move.ReadValue<Vector2>().x;
-        movement.z -= move.ReadValue<Vector2>().y;
-
-        rb.velocity = movement * moveSpeed;
+        Vector3 i = movement * moveSpeed;
+        rb.velocity = i;
     }
 }

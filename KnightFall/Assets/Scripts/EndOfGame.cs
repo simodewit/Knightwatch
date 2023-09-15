@@ -11,7 +11,7 @@ public class EndOfGame : MonoBehaviour
 
     public void Awake()
     {
-        for (int i = 0; i <= levelDetails.notImportant.hasCompletedSpawning.Length; i++)
+        for (int i = 0; i < levelDetails.notImportant.hasCompletedSpawning.Length; i++)
         {
             levelDetails.notImportant.hasCompletedSpawning[i] = false;
         }
