@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
@@ -7,6 +9,8 @@ public class CameraFollow : MonoBehaviour
     public GameObject player;
     public Rigidbody rb;
     public Vector3 offset;
+    public float lerpspeed;
+
 
     public void Start()
     {
@@ -15,12 +19,8 @@ public class CameraFollow : MonoBehaviour
     }
 
     void Update()
-    {
-        if(player.transform.position != transform.position)
-        {
-            offset.x = transform.position.x - player.transform.position.x;
-            offset.z = transform.position.z - (player.transform.position.z -10);
-            rb.AddForce(-offset, ForceMode.Force);
-        }
+    {   
+        Vector3 v = new Vector3(player.transform.position.x +offset.x, player.transform.position.y +offset.y, player.transform.position.z +offset.z);
+        transform.position = Vector3.Lerp(transform.position, v, lerpspeed * Time.deltaTime);
     }
 }

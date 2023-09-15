@@ -53,6 +53,15 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MouseAction2"",
+                    ""type"": ""Button"",
+                    ""id"": ""bee6c870-9a33-4416-b2c0-5e3e8a560c38"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -132,6 +141,17 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
                     ""action"": ""MouseAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a94c88bb-df30-4ee8-95ba-2821a0556504"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseAction2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -143,6 +163,7 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
         m_Movement3rdperson_Movement = m_Movement3rdperson.FindAction("Movement", throwIfNotFound: true);
         m_Movement3rdperson_mouse = m_Movement3rdperson.FindAction("mouse", throwIfNotFound: true);
         m_Movement3rdperson_MouseAction = m_Movement3rdperson.FindAction("MouseAction", throwIfNotFound: true);
+        m_Movement3rdperson_MouseAction2 = m_Movement3rdperson.FindAction("MouseAction2", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -207,6 +228,7 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
     private readonly InputAction m_Movement3rdperson_Movement;
     private readonly InputAction m_Movement3rdperson_mouse;
     private readonly InputAction m_Movement3rdperson_MouseAction;
+    private readonly InputAction m_Movement3rdperson_MouseAction2;
     public struct Movement3rdpersonActions
     {
         private @InputMaster m_Wrapper;
@@ -214,6 +236,7 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
         public InputAction @Movement => m_Wrapper.m_Movement3rdperson_Movement;
         public InputAction @mouse => m_Wrapper.m_Movement3rdperson_mouse;
         public InputAction @MouseAction => m_Wrapper.m_Movement3rdperson_MouseAction;
+        public InputAction @MouseAction2 => m_Wrapper.m_Movement3rdperson_MouseAction2;
         public InputActionMap Get() { return m_Wrapper.m_Movement3rdperson; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -232,6 +255,9 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
             @MouseAction.started += instance.OnMouseAction;
             @MouseAction.performed += instance.OnMouseAction;
             @MouseAction.canceled += instance.OnMouseAction;
+            @MouseAction2.started += instance.OnMouseAction2;
+            @MouseAction2.performed += instance.OnMouseAction2;
+            @MouseAction2.canceled += instance.OnMouseAction2;
         }
 
         private void UnregisterCallbacks(IMovement3rdpersonActions instance)
@@ -245,6 +271,9 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
             @MouseAction.started -= instance.OnMouseAction;
             @MouseAction.performed -= instance.OnMouseAction;
             @MouseAction.canceled -= instance.OnMouseAction;
+            @MouseAction2.started -= instance.OnMouseAction2;
+            @MouseAction2.performed -= instance.OnMouseAction2;
+            @MouseAction2.canceled -= instance.OnMouseAction2;
         }
 
         public void RemoveCallbacks(IMovement3rdpersonActions instance)
@@ -267,5 +296,6 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnMouse(InputAction.CallbackContext context);
         void OnMouseAction(InputAction.CallbackContext context);
+        void OnMouseAction2(InputAction.CallbackContext context);
     }
 }
