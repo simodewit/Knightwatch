@@ -6,9 +6,14 @@ public class PlacingFromTowerScript : MonoBehaviour
 {
     public GameObject Camera;
 
-    public bool collides;
+    public bool collides = true;
     public Shader red;
     public Shader green;
+
+    public void Start()
+    {
+        Camera = GameObject.Find("Main Camera");
+    }
 
     public void Update()
     {
@@ -25,7 +30,7 @@ public class PlacingFromTowerScript : MonoBehaviour
         }
     }
 
-    public void OnCollisionEnter(Collision collision)
+    public void OnCollisionStay(Collision collision)
     {
         collides = true;
     }
