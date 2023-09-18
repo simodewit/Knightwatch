@@ -6,37 +6,35 @@ public class PlacingFromTowerScript : MonoBehaviour
 {
     public GameObject Camera;
 
-    public bool collides = true;
-    public Shader red;
-    public Shader green;
+    public bool collides;
+    public float radiusForCollision;
+    public LayerMask layer;
 
     public void Start()
     {
+        collides = true;
         Camera = GameObject.Find("Main Camera");
     }
 
     public void Update()
     {
+        collides = Physics.CheckSphere(transform.position, radiusForCollision, layer);
+
         if(Camera.GetComponent<TowerPlacement>().inBuildingPhase == true)
         {
-            if(collides == true)
+            if(collides == false)
             {
-                GetComponent<Material>().shader = red;
+                GetComponent<Renderer>().material.SetFloat("_Index", 2);
             }
-            else if(collides == false)
+            else if(collides == true)
             {
-                GetComponent<Material>().shader = green;
+                GetComponent<Renderer>().material.SetFloat("_Index", 1);
             }
         }
     }
 
-    public void OnCollisionStay(Collision collision)
+    public void IsPlaced()
     {
-        collides = true;
-    }
-
-    public void OnCollisionExit(Collision collision)
-    {
-        collides = false;
+        GetComponent<Renderer>().material.SetFloat("_Index", 0);
     }
 }

@@ -53,7 +53,7 @@ public class TowerPlacement : MonoBehaviour
     public void MouseButtonAction()
     {
         script2 = currentTower.GetComponent<PlacingFromTowerScript>();
-        if (script2.collides == true)
+        if (script2.collides == false)
         {
             if(inBuildingPhase == true)
             {
@@ -61,6 +61,8 @@ public class TowerPlacement : MonoBehaviour
                 backButton.SetActive(false);
                 panel.SetActive(true);
                 inBuildingPhase = false;
+                script2.IsPlaced();
+                script2.enabled = false;
             }
         }
     }
