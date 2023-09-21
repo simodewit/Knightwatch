@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Worker
+  - Wood
+  - Stone
+  - Metal
   layers:
   - Default
   - TransparentFX

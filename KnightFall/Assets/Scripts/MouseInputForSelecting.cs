@@ -9,6 +9,8 @@ using static UnityEngine.InputSystem.InputAction;
 
 public class MouseInputForSelecting : MonoBehaviour
 {
+    public Material normalTexture;
+    public Material yellowCollorShader;
     public InputMaster input;
     public InputAction move;
     public Vector2 mousePosition;
@@ -32,31 +34,35 @@ public class MouseInputForSelecting : MonoBehaviour
         move.Disable();
     }
 
-    public void Clicks(CallbackContext c)
+    public void InputInteraction(CallbackContext c)
     {
-        //if(c.)
-        print("clicks");
-        mousePosition = move.ReadValue<Vector2>();
-
-        Ray ray = camera.GetComponent<Camera>().ScreenPointToRay(mousePosition);
-
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 100000))
+        if(c.started)
         {
-            if(selected == true)
+            print("klikt button");
+            mousePosition = move.ReadValue<Vector2>();
+
+            Ray ray = camera.GetComponent<Camera>().ScreenPointToRay(mousePosition);
+
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 100000))
             {
-                print("gets position");
-                worker.GetComponent<NavMeshAgent>().destination = hit.point;
-                selected = false;
-            }
-            else
-            {
-                print("selects player");
-                if (hit.transform.tag == "Worker")
+                print("schiet raycast");
+                if (selected == true)
                 {
-                    //select worker
-                    selected = true;
-                    worker = hit.transform.gameObject;
+                    worker.GetComponent<Renderer>().material = normalTexture;
+                    worker.GetComponent<NavMeshAgent>().destination = hit.point;
+                    selected = false;
+                }
+                else
+                {
+                    print(hit.transform.tag);
+                    if (hit.transform.tag == "Worker")
+                    {
+                        print("voert actie uit");
+                        selected = true;
+                        worker = hit.transform.gameObject;
+                        worker.GetComponent<Renderer>().material = yellowCollorShader;
+                    }
                 }
             }
         }
