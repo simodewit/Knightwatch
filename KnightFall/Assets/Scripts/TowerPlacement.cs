@@ -52,14 +52,17 @@ public class TowerPlacement : MonoBehaviour
 
     public void MouseButtonAction()
     {
-        if (script2.collides == true)
+        script2 = currentTower.GetComponent<PlacingFromTowerScript>();
+        if (script2.collides == false)
         {
             if(inBuildingPhase == true)
             {
+                script2.gameObject.layer = default;
                 backButton.SetActive(false);
                 panel.SetActive(true);
                 inBuildingPhase = false;
-                //enable tower
+                script2.IsPlaced();
+                script2.enabled = false;
             }
         }
     }
