@@ -4,10 +4,15 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< Updated upstream
   - Worker
   - Wood
   - Stone
   - Metal
+=======
+  - Wall
+  - Enemy
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
