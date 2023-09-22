@@ -32,7 +32,7 @@ public class TowerPlacement : MonoBehaviour
             Ray ray = GetComponent<Camera>().ScreenPointToRay(mousePosition);
             
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 100000,layer))
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity,layer))
             {
                 currentTower.transform.position = hit.point;
             }
@@ -52,18 +52,19 @@ public class TowerPlacement : MonoBehaviour
 
     public void MouseButtonAction()
     {
+        if (currentTower == null)
+            return;
+
         script2 = currentTower.GetComponent<PlacingFromTowerScript>();
-        if (script2.collides == false)
+
+        if (script2.collides == false && inBuildingPhase == true)
         {
-            if(inBuildingPhase == true)
-            {
-                script2.gameObject.layer = default;
-                backButton.SetActive(false);
-                panel.SetActive(true);
-                inBuildingPhase = false;
-                script2.IsPlaced();
-                script2.enabled = false;
-            }
+            script2.gameObject.layer = default;
+            backButton.SetActive(false);
+            panel.SetActive(true);
+            inBuildingPhase = false;
+            script2.IsPlaced();
+            script2.enabled = false;
         }
     }
 

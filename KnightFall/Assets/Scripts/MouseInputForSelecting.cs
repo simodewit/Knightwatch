@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -38,33 +39,36 @@ public class MouseInputForSelecting : MonoBehaviour
     {
         if(c.started)
         {
-            print("klikt button");
             mousePosition = move.ReadValue<Vector2>();
 
             Ray ray = camera.GetComponent<Camera>().ScreenPointToRay(mousePosition);
 
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 100000))
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
-                print("schiet raycast");
                 if (selected == true)
                 {
-                    worker.GetComponent<Renderer>().material = normalTexture;
-                    worker.GetComponent<NavMeshAgent>().destination = hit.point;
-                    selected = false;
+                    Deselect(hit.point);
                 }
-                else
+                else if(hit.transform.tag == "Worker")
                 {
-                    print(hit.transform.tag);
-                    if (hit.transform.tag == "Worker")
-                    {
-                        print("voert actie uit");
-                        selected = true;
-                        worker = hit.transform.gameObject;
-                        worker.GetComponent<Renderer>().material = yellowCollorShader;
-                    }
+                    Select(hit.transform.gameObject);
                 }
             }
         }
+    }
+
+    public void Select(GameObject worker)
+    {
+        selected = true;
+        this.worker = worker;
+        worker.GetComponent<Renderer>().material = yellowCollorShader;
+    }
+
+    public void Deselect(Vector3 point)
+    {
+        worker.GetComponent<Renderer>().material = normalTexture;
+        worker.GetComponent<NavMeshAgent>().destination = point;
+        selected = false;
     }
 }

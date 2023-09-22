@@ -37,9 +37,6 @@ public class ResourceFinder : MonoBehaviour
         {
             if(hitCollider.GetComponent<Resource>() != null)
             {
-                print("runs code");
-
-
                 switch (hitCollider.GetComponent<Resource>().type)
                 {
                     case Resource.ResourceType.Wood:
