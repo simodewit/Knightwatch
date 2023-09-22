@@ -40,8 +40,9 @@ public class NPCScript : MonoBehaviour
     public void DoDamage(float damage)
     {
         hp -= damage;
+        print("gets damage");
 
-        if(hp <= 0)
+        if (hp <= 0)
         {
             Destroy(gameObject);
         }

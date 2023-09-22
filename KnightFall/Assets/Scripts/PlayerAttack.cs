@@ -18,6 +18,7 @@ public class PlayerAttack : MonoBehaviour
         {
             if(hit.transform.tag == enemieTagName)
             {
+                print("attacks");
                 hit.transform.GetComponent<NPCScript>().DoDamage(damage);
             }
         }
