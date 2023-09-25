@@ -3,25 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-<<<<<<< Updated upstream
-  - Worker
-  - Wood
-  - Stone
-  - Metal
-=======
-  - Wall
-  - Enemy
->>>>>>> Stashed changes
+  tags: []
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Floor
+  - 
   - Water
   - UI
-  - towers
-  - placed towers
+  - 
+  - 
   - 
   - 
   - 

@@ -25,7 +25,7 @@ public class TowerScript : MonoBehaviour
 
     void Start()
     {
-        InvokeRepeating("TargetUpdate", 0f, 0.1f);
+        InvokeRepeating("TargetUpdate", 0f, 0.5f);
     }
 
     private void TargetUpdate()
