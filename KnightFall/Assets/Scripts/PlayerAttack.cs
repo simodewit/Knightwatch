@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.UI;
+using static UnityEngine.InputSystem.InputAction;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -11,15 +12,22 @@ public class PlayerAttack : MonoBehaviour
     public float attackDistance;
     public string enemieTagName;
     public float damage;
+    public float radius;
 
-    public void LeftMouse()
+    public void InputInteraction(CallbackContext c)
     {
-        if(Physics.Raycast(transform.position, transform.forward, out hit, attackDistance))
+        print("triggeres funtion");
+        if (c.started)
         {
-            if(hit.transform.tag == enemieTagName)
+            print("finds started button");
+            if (Physics.SphereCast(transform.position, radius, transform.forward, out hit, attackDistance))
             {
-                print("attacks");
-                hit.transform.GetComponent<NPCScript>().DoDamage(damage);
+                print("shoots raycast");
+                if (hit.transform.tag == enemieTagName)
+                {
+                    print("does damage");
+                    hit.transform.GetComponent<NPCScript>().DoDamage(damage);
+                }
             }
         }
     }

@@ -4,21 +4,18 @@ using UnityEngine;
 
 public class NPCScript : MonoBehaviour
 {
-    public float health;
+    public float hp;
 
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
     }
 
-
-    public float hp;
     public void DoDamage(float damage)
     {
         hp -= damage;

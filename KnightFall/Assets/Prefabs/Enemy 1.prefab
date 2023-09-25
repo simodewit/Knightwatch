@@ -149,12 +149,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f71e04a6313840a46b4376ffa068d7d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPosition: {x: 0, y: 0, z: 0}
-  wall: {fileID: 0}
-  castle: {fileID: 0}
-  agent: {fileID: 0}
-  areaMask: 0
-  hp: 0
+  health: 0
+  hp: 50
 --- !u!1 &8501877460412709069
 GameObject:
   m_ObjectHideFlags: 0

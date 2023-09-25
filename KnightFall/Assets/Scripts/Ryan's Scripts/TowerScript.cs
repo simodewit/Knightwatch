@@ -8,7 +8,7 @@ public class TowerScript : MonoBehaviour
     [Header("Variables")]
 
     public float range;
-    public float Damage;
+    public float damage;
     public float health;
     public float firerate;
     float fireCountDown  = 0f;
@@ -21,8 +21,6 @@ public class TowerScript : MonoBehaviour
     GameObject nearestEnemy = null;
     NPCScript npcS;
 
-
-
     void Start()
     {
         InvokeRepeating("TargetUpdate", 0f, 0.5f);
@@ -32,8 +30,6 @@ public class TowerScript : MonoBehaviour
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(tagName);
         float shortestDistance = Mathf.Infinity;
-
-
 
         foreach (GameObject enemy in enemies)
         {
@@ -45,7 +41,7 @@ public class TowerScript : MonoBehaviour
             }
         }
 
-        if(nearestEnemy != null && shortestDistance <= range ) 
+        if(nearestEnemy != null && shortestDistance <= range)
         {
             target = nearestEnemy.transform;
         }
@@ -53,13 +49,11 @@ public class TowerScript : MonoBehaviour
         {
             target = null;
         }
-
     }
     void Update()
     {
-
         Vector3 dir = target.position - transform.position;
-        Quaternion lookRotation = Quaternion.LookRotation( dir );
+        Quaternion lookRotation = Quaternion.LookRotation(dir);
         Vector3 rotation = lookRotation.eulerAngles;
         turretRotation.rotation = Quaternion.Euler(0f,rotation.y, 0f);
 
@@ -70,33 +64,18 @@ public class TowerScript : MonoBehaviour
         }
         fireCountDown -= Time.deltaTime;
 
-
         if (target != null)
         {
             return;
         }
-
-    
     }
 
     void shoot()
     {
-        Debug.Log("Shoot");
-
         Physics.Raycast(transform.position, nearestEnemy.transform.position, out RaycastHit hit, range);
         if (hit.transform.tag == tagName)
         {
-            Debug.Log("Shot");
-            
-            target.GetComponent<NPCScript>().health -= Damage;           
+            target.GetComponent<NPCScript>().DoDamage(damage);
         }
-
-
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, range);   
     }
 }
