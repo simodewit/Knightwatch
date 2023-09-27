@@ -14,6 +14,9 @@ public class PlayerAttack : MonoBehaviour
     public float damage;
     public float radius;
 
+    private Collider[] others;
+    private bool collides;
+
     public void InputInteraction(CallbackContext c)
     {
         print("triggeres funtion");
@@ -23,12 +26,19 @@ public class PlayerAttack : MonoBehaviour
             if (Physics.SphereCast(transform.position, radius, transform.forward, out hit, attackDistance))
             {
                 print("shoots raycast");
-                if (hit.transform.tag == enemieTagName)
+                if (hit.transform.tag == enemieTagName && collides == true)
                 {
                     print("does damage");
-                    hit.transform.GetComponent<NPCScript>().DoDamage(damage);
+                    collides = true;
+                    
                 }
             }
         }
+    }
+
+    public void OnTriggerStay(Collider other)
+    {
+
+        collides = true;
     }
 }
