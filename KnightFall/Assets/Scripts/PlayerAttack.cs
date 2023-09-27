@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,37 +9,32 @@ using static UnityEngine.InputSystem.InputAction;
 
 public class PlayerAttack : MonoBehaviour
 {
-    public RaycastHit hit;
-    public float attackDistance;
     public string enemieTagName;
     public float damage;
-    public float radius;
-
-    private Collider[] others;
-    private bool collides;
+    public Vector3 boxOffset;
+    public Vector3 colliderBoxSize;
+    public GameObject empty;
 
     public void InputInteraction(CallbackContext c)
     {
-        print("triggeres funtion");
         if (c.started)
         {
-            print("finds started button");
-            if (Physics.SphereCast(transform.position, radius, transform.forward, out hit, attackDistance))
+            print("triggers function");
+            Collider[] colliders = Physics.OverlapBox(empty.transform.position, colliderBoxSize, transform.rotation);
+            print("finds colliders");
+            foreach (Collider collider in colliders)
             {
-                print("shoots raycast");
-                if (hit.transform.tag == enemieTagName && collides == true)
+                if (collider.transform.tag == enemieTagName)
                 {
                     print("does damage");
-                    collides = true;
-                    
+                    collider.GetComponent<NPCScript>().DoDamage(damage);
                 }
             }
         }
     }
 
-    public void OnTriggerStay(Collider other)
+    public void OnDrawGizmos()
     {
-
-        collides = true;
+        Gizmos.DrawCube(transform.position + boxOffset, colliderBoxSize);
     }
 }
