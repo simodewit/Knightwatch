@@ -36,15 +36,6 @@ public class Movement : MonoBehaviour
         movement.x = move.ReadValue<Vector2>().x;
         movement.z = move.ReadValue<Vector2>().y;
         movement.y = 0;
-
-        lookRotation = new Vector3 (movement.x, 0, movement.z);
-        lookRotation.Normalize();
-
-        if (lookRotation != Vector3.zero)
-        {
-            Quaternion look = Quaternion.LookRotation(lookRotation, Vector3.up);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, look, rotateSpeed);
-        }
     }
 
     public void FixedUpdate()

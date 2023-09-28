@@ -311,7 +311,7 @@ Transform:
   m_GameObject: {fileID: 104519940}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0}
+  m_LocalPosition: {x: -1.44, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -389,6 +389,17 @@ MonoBehaviour:
   boxOffset: {x: 0, y: 0, z: 0.8}
   colliderBoxSize: {x: 1, y: 2, z: 0.5}
   empty: {fileID: 1430110176}
+  move:
+    m_Name: Move
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: ddd4f396-6e0a-48b0-a4c9-9279909946a3
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  cam: {fileID: 1486828280}
+  rotateSpeed: 0
 --- !u!114 &104519949
 MonoBehaviour:
   m_ObjectHideFlags: 0
