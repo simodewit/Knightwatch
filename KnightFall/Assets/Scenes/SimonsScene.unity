@@ -2138,7 +2138,18 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 8
-  script2: {fileID: 0}
+  towerScript: {fileID: 0}
+  info:
+    radius: 0
+    waitTimeForNextSpawn: 0
+    woodAmountToGoUp: 0
+    stoneAmountToGoUp: 0
+    metalAmountToGoUp: 0
+  counterInfo:
+    coins: 0
+    wood: 0
+    stone: 0
+    metal: 0
 --- !u!114 &1486828288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2276,6 +2287,7 @@ GameObject:
   - component: {fileID: 1611136135}
   - component: {fileID: 1611136136}
   - component: {fileID: 1611136137}
+  - component: {fileID: 1611136138}
   m_Layer: 0
   m_Name: Empty voor scripts
   m_TagString: Untagged
@@ -2394,6 +2406,27 @@ MonoBehaviour:
   spawnPlace: {fileID: 966667587}
   worker: {fileID: 3844215043890381913, guid: fbe4ee8fca8b04f4bb3be026c8d81675, type: 3}
   currentWorker: {fileID: 0}
+--- !u!114 &1611136138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611136131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05fa2c80dd752d143b905b0ca8fd2f81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinsButton: {fileID: 0}
+  woodButton: {fileID: 0}
+  stoneButton: {fileID: 0}
+  metalButton: {fileID: 0}
+  counterinfo:
+    coins: 3
+    wood: 0
+    stone: 0
+    metal: 0
 --- !u!1 &1803327723
 GameObject:
   m_ObjectHideFlags: 0

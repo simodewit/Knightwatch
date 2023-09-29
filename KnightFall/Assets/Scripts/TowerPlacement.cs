@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Windows;
@@ -16,7 +17,8 @@ public class TowerPlacement : MonoBehaviour
     public LayerMask layer;
     private GameObject currentTower;
     private Vector2 mousePosition;
-    public PlacingFromTowerScript script2;
+    public PlacingFromTowerScript towerScript;
+    public Info info;
 
     private void Awake()
     {
@@ -55,16 +57,33 @@ public class TowerPlacement : MonoBehaviour
         if (currentTower == null)
             return;
 
-        script2 = currentTower.GetComponent<PlacingFromTowerScript>();
+        towerScript = currentTower.GetComponent<PlacingFromTowerScript>();
 
-        if (script2.collides == false && inBuildingPhase == true)
+        if (towerScript.collides == false && inBuildingPhase == true)
         {
-            script2.gameObject.layer = default;
+            if (counterInfo.coins < towerScript.coinsNeeded)
+                return;
+
+            if (counterInfo.wood < towerScript.woodNeeded)
+                return;
+
+            if (counterInfo.stone < towerScript.stoneNeeded)
+                return;
+
+            if (counterInfo.metal < towerScript.metalNeeded)
+                return;
+
+            counterInfo.coins -= towerScript.coinsNeeded;
+            counterInfo.wood -= towerScript.woodNeeded;
+            counterInfo.stone -= towerScript.stoneNeeded;
+            counterInfo.metal -= towerScript.metalNeeded;
+
+            towerScript.gameObject.layer = default;
             backButton.SetActive(false);
             panel.SetActive(true);
             inBuildingPhase = false;
-            script2.IsPlaced();
-            script2.enabled = false;
+            towerScript.IsPlaced();
+            towerScript.enabled = false;
         }
     }
 
@@ -107,4 +126,6 @@ public class TowerPlacement : MonoBehaviour
         inBuildingPhase = true;
         currentTower = Instantiate(towerInfo[index]);
     }
+
+    public InfoForCounters counterInfo;
 }

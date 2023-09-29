@@ -8,11 +8,6 @@ public class ResourceFinder : MonoBehaviour
 {
     private float timer;
 
-    public void Start()
-    {
-        info.woodCounter = GameObject.Find("WoodCounter");
-    }
-
     public void Update()
     {
         TimerFunction();
@@ -40,24 +35,25 @@ public class ResourceFinder : MonoBehaviour
                 switch (hitCollider.GetComponent<Resource>().type)
                 {
                     case Resource.ResourceType.Wood:
-                        float newCountWood = float.Parse(info.woodCounter.GetComponent<TextMeshProUGUI>().text) + 1;
-                        info.woodCounter.GetComponent<TextMeshProUGUI>().text = newCountWood.ToString();
+                        float newCountWood = counterInfo.wood + 1;
+                        counterInfo.wood = newCountWood;
                         break;
 
                     case Resource.ResourceType.Stone:
-                        float newCountStone = float.Parse(info.stoneCounter.GetComponent<TextMeshProUGUI>().text) + 1;
-                        info.stoneCounter.GetComponent<TextMeshProUGUI>().text = newCountStone.ToString();
+                        float newCountStone = counterInfo.stone + 1;
+                        counterInfo.stone = newCountStone;
                         break;
 
                     case Resource.ResourceType.Metal:
-                        float newCountMetal = float.Parse(info.metalCounter.GetComponent<TextMeshProUGUI>().text) + 1;
-                        info.metalCounter.GetComponent<TextMeshProUGUI>().text = newCountMetal.ToString();
+                        float newCountMetal = counterInfo.metal + 1;
+                        counterInfo.metal = newCountMetal;
                         break;
                 }
             }
         }
     }
     public Info info;
+    public InfoForCounters counterInfo;
 }
 
 [System.Serializable]
@@ -69,8 +65,4 @@ public class Info
     public float woodAmountToGoUp;
     public float stoneAmountToGoUp;
     public float metalAmountToGoUp;
-
-    public GameObject woodCounter;
-    public GameObject stoneCounter;
-    public GameObject metalCounter;
 }

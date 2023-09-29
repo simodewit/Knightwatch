@@ -10,6 +10,11 @@ public class PlacingFromTowerScript : MonoBehaviour
     public float radiusForCollision;
     public LayerMask layer;
 
+    public float woodNeeded;
+    public float stoneNeeded;
+    public float metalNeeded;
+    public float coinsNeeded;
+
     public void Start()
     {
         collides = true;
