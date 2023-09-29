@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class TowerScript : MonoBehaviour
 {
@@ -20,10 +21,15 @@ public class TowerScript : MonoBehaviour
     public Transform turretRotation;
     GameObject nearestEnemy = null;
     NPCScript npcS;
+<<<<<<< Updated upstream
+=======
+    private Vector3 dir;
+
+>>>>>>> Stashed changes
 
     void Start()
     {
-        InvokeRepeating("TargetUpdate", 0f, 0.5f);
+        InvokeRepeating("TargetUpdate", 0f, 0.125f);
     }
 
     private void TargetUpdate()
@@ -52,15 +58,22 @@ public class TowerScript : MonoBehaviour
     }
     void Update()
     {
+<<<<<<< Updated upstream
         Vector3 dir = target.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(dir);
+=======
+        Debug.DrawRay(turretRotation.position, turretRotation.forward * range);
+
+        dir = target.position - transform.position;
+        Quaternion lookRotation = Quaternion.LookRotation( dir );
+>>>>>>> Stashed changes
         Vector3 rotation = lookRotation.eulerAngles;
         turretRotation.rotation = Quaternion.Euler(0f,rotation.y, 0f);
 
         if (fireCountDown <= 0f)
         {
             shoot();
-            fireCountDown = 1f / firerate;
+            fireCountDown = 1f * firerate;
         }
         fireCountDown -= Time.deltaTime;
 
@@ -72,10 +85,35 @@ public class TowerScript : MonoBehaviour
 
     void shoot()
     {
+<<<<<<< Updated upstream
         Physics.Raycast(transform.position, nearestEnemy.transform.position, out RaycastHit hit, range);
         if (hit.transform.tag == tagName)
         {
             target.GetComponent<NPCScript>().DoDamage(damage);
         }
+=======
+        Debug.Log("Shoot");
+        RaycastHit hit;
+
+        Physics.Raycast(transform.position, turretRotation.forward, out hit, range);
+        
+        if (hit.transform.tag == tagName)
+        {
+            
+            target.GetComponent<NPCScript>().hp -= Damage;           
+        }
+            
+            
+            
+            
+
+
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, range);   
+>>>>>>> Stashed changes
     }
 }
