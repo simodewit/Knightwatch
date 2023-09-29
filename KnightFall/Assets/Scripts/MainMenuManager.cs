@@ -15,6 +15,7 @@ public class MainMenuManager : MonoBehaviour
     public GameObject quitGame;
     public string sceneName;
 
+    public AudioSource buttonClick;
     public Slider mainVolume;
     public Slider SFXVolume;
     public Slider musicVolume;
@@ -30,6 +31,7 @@ public class MainMenuManager : MonoBehaviour
     {
         main.SetActive(false);
         options.SetActive(true);
+        
     }
 
     public void OnClickCredits()
@@ -70,6 +72,11 @@ public class MainMenuManager : MonoBehaviour
     public void OptionsVolume()
     {
         AudioListener.volume = mainVolume.value;
+
+        PlayerPrefs.SetFloat("Volume", mainVolume.value);
+
+        mainVolume.value = PlayerPrefs.GetFloat("Volume");
+
         //music volume aanpassen
         //FSX volume aanpassen
     }
