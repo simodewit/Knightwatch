@@ -7,9 +7,9 @@ using UnityEngine.AI;
 
 public class NPCScript : MonoBehaviour
 {
-<<<<<<< Updated upstream
+
     public float hp;
-=======
+
     [Header("Wall & Castle finder")]
     public GameObject nearestWall = null;
     public GameObject castle = null;
@@ -31,7 +31,7 @@ public class NPCScript : MonoBehaviour
     public NavMeshPath path;
 
 
->>>>>>> Stashed changes
+
 
     void Start()
     {
@@ -40,10 +40,7 @@ public class NPCScript : MonoBehaviour
         path = new NavMeshPath();
     }
 
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
     void Update()
     {
         castle = GameObject.FindGameObjectWithTag(tagNameCastle);

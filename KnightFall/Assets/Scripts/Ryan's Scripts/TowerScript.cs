@@ -21,11 +21,11 @@ public class TowerScript : MonoBehaviour
     public Transform turretRotation;
     GameObject nearestEnemy = null;
     NPCScript npcS;
-<<<<<<< Updated upstream
-=======
-    private Vector3 dir;
 
->>>>>>> Stashed changes
+    private Vector3 dir;
+    private Vector3 rotation;
+
+
 
     void Start()
     {
@@ -58,15 +58,15 @@ public class TowerScript : MonoBehaviour
     }
     void Update()
     {
-<<<<<<< Updated upstream
+
         Vector3 dir = target.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(dir);
-=======
+
         Debug.DrawRay(turretRotation.position, turretRotation.forward * range);
 
         dir = target.position - transform.position;
-        Quaternion lookRotation = Quaternion.LookRotation( dir );
->>>>>>> Stashed changes
+        lookRotation = Quaternion.LookRotation( dir );
+
         Vector3 rotation = lookRotation.eulerAngles;
         turretRotation.rotation = Quaternion.Euler(0f,rotation.y, 0f);
 
@@ -85,22 +85,22 @@ public class TowerScript : MonoBehaviour
 
     void shoot()
     {
-<<<<<<< Updated upstream
+
         Physics.Raycast(transform.position, nearestEnemy.transform.position, out RaycastHit hit, range);
         if (hit.transform.tag == tagName)
         {
             target.GetComponent<NPCScript>().DoDamage(damage);
         }
-=======
+
         Debug.Log("Shoot");
-        RaycastHit hit;
+
 
         Physics.Raycast(transform.position, turretRotation.forward, out hit, range);
         
         if (hit.transform.tag == tagName)
         {
             
-            target.GetComponent<NPCScript>().hp -= Damage;           
+            target.GetComponent<NPCScript>().hp -= damage;           
         }
             
             
@@ -114,6 +114,6 @@ public class TowerScript : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, range);   
->>>>>>> Stashed changes
+
     }
 }
