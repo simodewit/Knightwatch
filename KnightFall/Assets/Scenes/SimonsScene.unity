@@ -2137,7 +2137,7 @@ MonoBehaviour:
   inBuildingPhase: 0
   layer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
   script2: {fileID: 0}
 --- !u!114 &1486828288
 MonoBehaviour:
