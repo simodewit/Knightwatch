@@ -10,6 +10,9 @@ public class AudioMainMenu : MonoBehaviour
 
     public void Update()
     {
-        //updates audio for music and buttonclick
+        AudioListener.volume = PlayerPrefs.GetFloat("mainVolume");
+        music1.volume = PlayerPrefs.GetFloat("musicVolume");
+        music2.volume = PlayerPrefs.GetFloat("musicVolume");
+        buttonClick.volume = PlayerPrefs.GetFloat("SFXVolume");
     }
 }

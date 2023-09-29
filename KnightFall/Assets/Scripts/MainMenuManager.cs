@@ -9,12 +9,14 @@ using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {
+    [Header("Buttons/loading scene")]
     public GameObject main;
     public GameObject options;
     public GameObject credits;
     public GameObject quitGame;
     public string sceneName;
 
+    [Header("settings")]
     public AudioSource buttonClick;
     public Slider mainVolume;
     public Slider SFXVolume;
@@ -22,63 +24,72 @@ public class MainMenuManager : MonoBehaviour
     public Dropdown resolutions;
     public Toggle fullscreen;
 
+    public void Start()
+    {
+        mainVolume.value = PlayerPrefs.GetFloat("mainVolume");
+        musicVolume.value = PlayerPrefs.GetFloat("musicVolume");
+        SFXVolume.value = PlayerPrefs.GetFloat("SFXVolume");
+    }
+
     public void OnClickPlay()
     {
         SceneManager.LoadScene(sceneName);
+        buttonClick.Play();
     }
 
     public void OnClickOptions()
     {
         main.SetActive(false);
         options.SetActive(true);
-        
+        buttonClick.Play();
     }
 
     public void OnClickCredits()
     {
         main.SetActive(false);
         credits.SetActive(true);
+        buttonClick.Play();
     }
 
     public void OnClickQuitGame()
     {
         main.SetActive(false);
         quitGame.SetActive(true);
+        buttonClick.Play();
     }
 
     public void OnClickOptionsBack()
     {
         options.SetActive(false);
         main.SetActive(true);
+        buttonClick.Play();
     }
 
     public void OnClickCreditsBack()
     {
         credits.SetActive(false);
         main.SetActive(true);
+        buttonClick.Play();
     }
 
     public void OnClickNoQuitGame()
     {
         quitGame.SetActive(false);
         main.SetActive(true);
+        buttonClick.Play();
     }
 
     public void OnClickYesQuitGame()
     {
+        buttonClick.Play();
         Application.Quit();
     }
 
     public void OptionsVolume()
     {
-        AudioListener.volume = mainVolume.value;
-
-        PlayerPrefs.SetFloat("Volume", mainVolume.value);
-
-        mainVolume.value = PlayerPrefs.GetFloat("Volume");
-
-        //music volume aanpassen
-        //FSX volume aanpassen
+        PlayerPrefs.SetFloat("mainVolume", mainVolume.value);
+        PlayerPrefs.SetFloat("musicVolume", musicVolume.value);
+        PlayerPrefs.SetFloat("SFXVolume", SFXVolume.value);
     }
 
     public void OptionsResolution()
