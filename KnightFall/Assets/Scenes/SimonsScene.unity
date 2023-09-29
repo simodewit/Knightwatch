@@ -2124,7 +2124,7 @@ MonoBehaviour:
   backButton: {fileID: 182642958}
   panel: {fileID: 1277236759}
   towerInfo:
-  - {fileID: 8483869172735572915, guid: 832e8545e39d2d4429603618a9d9d712, type: 3}
+  - {fileID: 386102988904162359, guid: 2c47a50239a176842a721be74e8a62a8, type: 3}
   move:
     m_Name: Move
     m_Type: 0
@@ -2137,7 +2137,7 @@ MonoBehaviour:
   inBuildingPhase: 0
   layer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   script2: {fileID: 0}
 --- !u!114 &1486828288
 MonoBehaviour:

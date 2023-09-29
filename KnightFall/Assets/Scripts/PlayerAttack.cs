@@ -38,12 +38,11 @@ public class PlayerAttack : MonoBehaviour
 
     public void Update()
     {
-
-        Vector2 mousePosition = move.ReadValue<Vector2>();
-        Ray ray = cam.GetComponent<Camera>().ScreenPointToRay(mousePosition);
+        Vector2 mouse = move.ReadValue<Vector2>();
+        Ray rays = cam.GetComponent<Camera>().ScreenPointToRay(mouse);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+        if (Physics.Raycast(rays, out hit, Mathf.Infinity))
         {
             transform.LookAt(new Vector3(hit.point.x, transform.position.y, hit.point.z));
         }
