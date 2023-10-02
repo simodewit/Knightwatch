@@ -19,12 +19,11 @@ public class CameraFollow : MonoBehaviour
     private void Awake()
     {
         input = new InputMaster();
-        rb = GetComponent<Rigidbody>();
     }
 
     private void OnEnable()
     {
-        move = input.Movement3rdperson.Movement;
+        move = input.Movement3rdperson.MouseScroll;
         move.Enable();
     }
 
@@ -40,7 +39,17 @@ public class CameraFollow : MonoBehaviour
     }
 
     void Update()
-    {   
+    {
+        float scrollPosition = move.ReadValue<float>();
+        print(scrollPosition);
+
+        if(scrollPosition != 0f)
+        {
+            Vector3 moveAxis = new Vector3(0, 0, scrollPosition);
+            empty.transform.position += moveAxis;
+            Vector3 newOffset = (player.transform.position -= transform.position);
+        }
+
         Vector3 playerPositionWithOffset = new Vector3(player.transform.position.x +offset.x, player.transform.position.y +offset.y, player.transform.position.z +offset.z);
         transform.position = Vector3.Lerp(transform.position, playerPositionWithOffset, lerpspeed * Time.deltaTime);
     }
