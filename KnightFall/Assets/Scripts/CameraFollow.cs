@@ -41,7 +41,7 @@ public class CameraFollow : MonoBehaviour
     void Update()
     {
         float scrollPosition = move.ReadValue<float>();
-        print(scrollPosition);
+        //print(scrollPosition);
 
         if(scrollPosition != 0f)
         {
