@@ -13,7 +13,7 @@ public class NPCwalking : MonoBehaviour
     public NavMeshAgent agent;
     public GameObject castle;
     public string[] tags;
-    float totalDistance;
+    float totalDistance = Mathf.Infinity;
     public GameObject currentWall;
     public float distanceToAttack;
     public int damage;
@@ -44,7 +44,7 @@ public class NPCwalking : MonoBehaviour
             float distanceNPCToWall = Vector3.Distance(transform.position, wall.transform.position);
             float distanceWallToCastle = Vector3.Distance(wall.transform.position, castle.transform.position);
 
-            if (totalDistance < distanceNPCToWall + distanceWallToCastle + wall.GetComponent<WallInfo>().wallCost)
+            if (totalDistance > distanceNPCToWall + distanceWallToCastle + wall.GetComponent<WallInfo>().wallCost)
             {
                 totalDistance = distanceWallToCastle + distanceNPCToWall + wall.GetComponent<WallInfo>().wallCost;
                 currentWall = wall;
@@ -54,26 +54,33 @@ public class NPCwalking : MonoBehaviour
         NavMeshPath pathToCastle = new NavMeshPath();
         agent.CalculatePath(castle.transform.position, pathToCastle);
 
-        if (pathToCastle.status != NavMeshPathStatus.PathInvalid)
+        if (pathToCastle.status != NavMeshPathStatus.PathPartial)
         {
             agent.SetPath(pathToCastle);
             if (totalDistance < agent.remainingDistance)
             {
+                print("goes to wall");
                 agent.destination = currentWall.transform.position;
             }
             else
             {
+                print("goes to castle");
+                currentWall = null;
                 agent.destination = castle.transform.position;
             }
         }
         else
         {
+            print("goes to wall because obstructed");
             agent.destination = currentWall.transform.position;
         }
     }
 
     public void DoesDamage()
     {
+        if (currentWall == null)
+            return;
+
         cooldown -= Time.deltaTime;
         float distance = Vector3.Distance(transform.position, currentWall.transform.position);
 
@@ -81,6 +88,7 @@ public class NPCwalking : MonoBehaviour
         {
             if(cooldown <= 0f)
             {
+                print("does damage");
                 currentWall.GetComponent<WallInfo>().DoDamage(damage);
                 cooldown = attackCooldown;
             }
