@@ -35,12 +35,13 @@ public class Movement : MonoBehaviour
     {
         movement.x = move.ReadValue<Vector2>().x;
         movement.z = move.ReadValue<Vector2>().y;
-        movement.y = 0;
     }
 
     public void FixedUpdate()
     {
         Vector3 i = movement * moveSpeed;
+        i.y = rb.velocity.y;
+
         rb.velocity = i;
     }
 }
