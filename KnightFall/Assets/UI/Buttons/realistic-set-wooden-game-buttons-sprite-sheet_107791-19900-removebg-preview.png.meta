@@ -118,7 +118,7 @@ TextureImporter:
         width: 345
         height: 49
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 15, y: 9, z: 15, w: 9}
       outline: []
       physicsShape: []
@@ -139,7 +139,7 @@ TextureImporter:
         width: 345
         height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 15, y: 8, z: 15, w: 9}
       outline: []
       physicsShape: []
@@ -160,7 +160,7 @@ TextureImporter:
         width: 345
         height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 15, y: 7, z: 14, w: 9}
       outline: []
       physicsShape: []
@@ -168,6 +168,48 @@ TextureImporter:
       bones: []
       spriteID: 2b325f8fa35843d4ba36fded992ca8a7
       internalID: -1261180922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: realistic-set-wooden-game-buttons-sprite-sheet_107791-19900-removebg-preview_3
+      rect:
+        serializedVersion: 2
+        x: 382
+        y: 29
+        width: 39
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71c097021890f554db96def658b40de0
+      internalID: 716594966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: realistic-set-wooden-game-buttons-sprite-sheet_107791-19900-removebg-preview_4
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 99
+        width: 38
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32d3b78dbaaa23d478db79eb844a30fb
+      internalID: -1690832393
       vertices: []
       indices: 
       edges: []
@@ -186,6 +228,8 @@ TextureImporter:
       realistic-set-wooden-game-buttons-sprite-sheet_107791-19900-removebg-preview_0: -994832718
       realistic-set-wooden-game-buttons-sprite-sheet_107791-19900-removebg-preview_1: -1375390981
       realistic-set-wooden-game-buttons-sprite-sheet_107791-19900-removebg-preview_2: -1261180922
+      realistic-set-wooden-game-buttons-sprite-sheet_107791-19900-removebg-preview_3: 716594966
+      realistic-set-wooden-game-buttons-sprite-sheet_107791-19900-removebg-preview_4: -1690832393
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
