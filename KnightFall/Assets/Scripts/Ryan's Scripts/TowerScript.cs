@@ -7,18 +7,23 @@ using UnityEngine.UIElements;
 
 public class TowerScript : MonoBehaviour
 {
-    [Header("Variables")]
+    [Header("level")]
 
-    public bool splashDamage;
+    
+    public int level;
+
+    [Header("Ranges")]
 
     public float range;
     public float minumumRange;
     public float splashRange;
+
+    [Header("Gun Variables")]
+    public bool splashDamage;
     public float damage;
     public float health;
     public float firerate;
     float fireCountDown  = 0f;
-    public int level;
 
     [Header("Unity Dingen")]
 
@@ -136,14 +141,9 @@ public class TowerScript : MonoBehaviour
 
     }
        private void OnDrawGizmosSelected()
-    {
+       {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, range);   
 
-    }
-
-
-
-
-
+       }
 }
