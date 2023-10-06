@@ -1,18 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SpawningNPC : MonoBehaviour
 {
-    public LevelDetails levelDetails;
-    public float timer;
+    public string timer;
     public Timer timerScript;
     public List<GameObject> currentAliveEnemys = new List<GameObject>();
 
     public void Start()
     {
         timerScript = GetComponent<Timer>();
-        timerScript.Init();
     }
 
     public void Update()
@@ -22,25 +21,28 @@ public class SpawningNPC : MonoBehaviour
 
     public IEnumerator spawner()
     {
-        timerScript.DoUpdate();
-        timer = timerScript.timer;
+        timerScript.Init();
+        timer = timerScript.text;
 
-        for (int i = 0; i < levelDetails.spawnDescriptions.Length; i++)
+        for(int a = 0; a < spawnPlaces.Length; a++)
         {
-            if (levelDetails.spawnDescriptions[i].timeToSpawn >= timer)
+            for (int i = 0; i < spawnPlaces[a].spawnDescriptions.Length; i++)
             {
-                if (levelDetails.notImportant.hasCompletedSpawning[i] == false)
+                if (spawnPlaces[a].spawnDescriptions[i].timeToSpawn == timer)
                 {
-                    levelDetails.notImportant.hasCompletedSpawning[i] = true;
-
-                    for (int j = 0; j < levelDetails.spawnDescriptions[i].enemiesToSpawn; j++)
+                    if (spawnPlaces[a].notImportant.hasCompletedSpawning == false)
                     {
-                        int indexForEnemyType = Random.Range(0, levelDetails.spawnDescriptions[i].enemies.Length);
-                        GameObject enemy = Instantiate(levelDetails.spawnDescriptions[i].enemies[indexForEnemyType]);
-                        int indexForPlaceToSpawn = Random.Range(0, spawnPlaces[i].placesToSpawn.Length);
-                        enemy.transform.position = spawnPlaces[i].placesToSpawn[indexForPlaceToSpawn].transform.position;
-                        currentAliveEnemys.Add(enemy);
-                        yield return new WaitForSeconds(levelDetails.spawnDescriptions[i].spawnInterval);
+                        spawnPlaces[a].notImportant.hasCompletedSpawning = true;
+
+                        for (int j = 0; j < spawnPlaces[a].spawnDescriptions[i].enemiesToSpawn; j++)
+                        {
+                            int indexForEnemyType = Random.Range(0, spawnPlaces[a].spawnDescriptions[i].enemies.Length);
+                            GameObject enemy = Instantiate(spawnPlaces[a].spawnDescriptions[i].enemies[indexForEnemyType]);
+                            int indexForPlaceToSpawn = Random.Range(0, spawnPlaces[i].placesToSpawn.Length);
+                            enemy.transform.position = spawnPlaces[i].placesToSpawn[indexForPlaceToSpawn].transform.position;
+                            currentAliveEnemys.Add(enemy);
+                            yield return new WaitForSeconds(spawnPlaces[a].spawnDescriptions[i].spawnInterval);
+                        }
                     }
                 }
             }
@@ -53,4 +55,21 @@ public class SpawningNPC : MonoBehaviour
 public class SpawnPlaces
 {
     public GameObject[] placesToSpawn;
+    public SpawnDescriptions[] spawnDescriptions;
+    public NotImportant notImportant;
+}
+
+[System.Serializable]
+public class SpawnDescriptions
+{
+    public string timeToSpawn;
+    public int enemiesToSpawn;
+    public float spawnInterval;
+    public GameObject[] enemies;
+}
+
+[System.Serializable]
+public class NotImportant
+{
+    public bool hasCompletedSpawning;
 }

@@ -1,31 +1,59 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
-    public float[] timePerLevel;
-    public int level;
-    public bool buttonIsPressed;
-    public float timer;
     public GameObject button;
+    public float minute;
+    public float second;
+    public GameObject counter;
 
-    public void DoUpdate()
+    [Header("DoNotTouch")]
+    public bool buttonIsPressed;
+    public string text;
+
+    public void Update()
     {
         if(buttonIsPressed == true)
         {
-            timer -= Time.deltaTime;
+            if(second <= 0)
+            {
+                if(minute <= 0)
+                {
+                    //stop game
+                }
+                else
+                {
+                    minute -= 1;
+                    second = 59;
+                }
+            }
+            else
+            {
+                second -= 1 * Time.deltaTime;
+            }
+
+            int fixedMinute = Mathf.RoundToInt(minute);
+            int fixedSecond = Mathf.RoundToInt(second);
+            convertToTime(fixedMinute, fixedSecond, text);
+            counter.GetComponent<TextMeshProUGUI>().text = text;
         }
     }
 
     public void Init()
     {
-        timer = timePerLevel[level];
+        buttonIsPressed = true;
     }
 
     public void ButtonPress()
     {
-        buttonIsPressed = true;
         button.SetActive(false);
+    }
+
+    public void convertToTime(int minutes, int seconds, string endResult)
+    {
+        endResult = minutes.ToString() + ":" + seconds.ToString();
     }
 }

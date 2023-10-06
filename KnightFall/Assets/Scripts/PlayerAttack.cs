@@ -52,14 +52,11 @@ public class PlayerAttack : MonoBehaviour
     {
         if (c.started)
         {
-            print("triggers function");
             Collider[] colliders = Physics.OverlapBox(empty.transform.position, colliderBoxSize, transform.rotation);
-            print("finds colliders");
             foreach (Collider collider in colliders)
             {
                 if (collider.transform.tag == enemieTagName)
                 {
-                    print("does damage");
                     collider.GetComponent<NPCScript>().DoDamage(damage);
                 }
             }
