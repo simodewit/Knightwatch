@@ -14,7 +14,7 @@ public class Timer : MonoBehaviour
     public bool buttonIsPressed;
     public string text;
 
-    public void Update()
+    public void Init()
     {
         if(buttonIsPressed == true)
         {
@@ -37,23 +37,20 @@ public class Timer : MonoBehaviour
 
             int fixedMinute = Mathf.RoundToInt(minute);
             int fixedSecond = Mathf.RoundToInt(second);
-            convertToTime(fixedMinute, fixedSecond, text);
+            convertToTime(fixedMinute, fixedSecond);
             counter.GetComponent<TextMeshProUGUI>().text = text;
         }
     }
 
-    public void Init()
-    {
-        buttonIsPressed = true;
-    }
-
     public void ButtonPress()
     {
+        counter.SetActive(true);
+        buttonIsPressed = true;
         button.SetActive(false);
     }
 
-    public void convertToTime(int minutes, int seconds, string endResult)
+    public void convertToTime(int minutes, int seconds)
     {
-        endResult = minutes.ToString() + ":" + seconds.ToString();
+        text = minutes.ToString() + ":" + seconds.ToString();
     }
 }
