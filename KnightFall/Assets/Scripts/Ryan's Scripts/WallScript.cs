@@ -34,7 +34,7 @@ public class WallScript : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         print("hit");
-        if(other.tag == enemyTag)
+        if (other.tag == enemyTag)
         {
             health -= npcScript.eDamage * delayFactor;
         }

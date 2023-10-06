@@ -46,18 +46,19 @@ public class NPCScript : MonoBehaviour
         castle = GameObject.FindGameObjectWithTag(tagNameCastle);
         NavMesh.CalculatePath(transform.position, castle.transform.position, areamask, path);
         agent.SetPath(path);
+        
 
 
 
 
 
- 
+
     }
 
     public void DoDamage(float damage)
     {
         hp -= damage;
-        if(hp >= 0)
+        if(hp <= 0)
         {
             Destroy(this.gameObject);
         }

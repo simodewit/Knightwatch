@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -8,11 +9,16 @@ public class TowerScript : MonoBehaviour
 {
     [Header("Variables")]
 
+    public bool splashDamage;
+
     public float range;
+    public float minumumRange;
+    public float splashRange;
     public float damage;
     public float health;
     public float firerate;
     float fireCountDown  = 0f;
+    public int level;
 
     [Header("Unity Dingen")]
 
@@ -72,8 +78,17 @@ public class TowerScript : MonoBehaviour
 
         if (fireCountDown <= 0f)
         {
-            shoot();
-            fireCountDown = 1f * firerate;
+            if (splashDamage == true)
+            {
+                fireCountDown = 1f * firerate;
+                print("splaashh");
+                SplashDamage();
+            }
+            else
+            {
+                fireCountDown = 1f * firerate;
+                shoot();
+            }
         }
         fireCountDown -= Time.deltaTime;
 
@@ -85,7 +100,6 @@ public class TowerScript : MonoBehaviour
 
     void shoot()
     {
-
         Physics.Raycast(transform.position, nearestEnemy.transform.position, out RaycastHit hit, range);
         if (hit.transform.tag == tagName)
         {
@@ -93,7 +107,6 @@ public class TowerScript : MonoBehaviour
         }
 
         Debug.Log("Shoot");
-
 
         Physics.Raycast(transform.position, turretRotation.forward, out hit, range);
         
@@ -103,17 +116,34 @@ public class TowerScript : MonoBehaviour
             target.GetComponent<NPCScript>().hp -= damage;           
         }
             
+    }
             
             
-            
+    void SplashDamage()
+    {
+       Collider[] enemies =  Physics.OverlapSphere(target.transform.position, splashRange);
+        float distance;
+        foreach(Collider Enemy in enemies)
+        {
+            distance = Vector3.Distance(target.position, Enemy.transform.position);
+           if(Enemy.transform.tag == tagName)
+           {
+                print("splashdiddamage;");
+               Enemy.GetComponent<NPCScript>().DoDamage(damage - distance);
+           }
 
+        }
 
     }
-
-    private void OnDrawGizmosSelected()
+       private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, range);   
 
     }
+
+
+
+
+
 }
