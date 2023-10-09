@@ -7,26 +7,6 @@ using UnityEngine.UIElements;
 
 public class TowerScript : MonoBehaviour
 {
-    [Header("level")]
-
-    
-    public int level;
-
-    [Header("Ranges")]
-
-    public float range;
-    public float minumumRange;
-    public float splashRange;
-
-    [Header("Gun Variables")]
-    public bool splashDamage;
-    public float damage;
-    public float health;
-    public float firerate;
-    float fireCountDown  = 0f;
-
-    [Header("Unity Dingen")]
-
     public Transform target;
     public string tagName = "Enemy";
     public Transform turretRotation;
@@ -35,8 +15,6 @@ public class TowerScript : MonoBehaviour
 
     private Vector3 dir;
     private Vector3 rotation;
-
-
 
     void Start()
     {
@@ -58,7 +36,7 @@ public class TowerScript : MonoBehaviour
             }
         }
 
-        if(nearestEnemy != null && shortestDistance <= range)
+        if(nearestEnemy != null && shortestDistance <= levels[currentLevel].range)
         {
             target = nearestEnemy.transform;
         }
@@ -73,7 +51,7 @@ public class TowerScript : MonoBehaviour
         Vector3 dir = target.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(dir);
 
-        Debug.DrawRay(turretRotation.position, turretRotation.forward * range);
+        Debug.DrawRay(turretRotation.position, turretRotation.forward * levels[currentLevel].range);
 
         dir = target.position - transform.position;
         lookRotation = Quaternion.LookRotation( dir );
@@ -81,21 +59,21 @@ public class TowerScript : MonoBehaviour
         Vector3 rotation = lookRotation.eulerAngles;
         turretRotation.rotation = Quaternion.Euler(0f,rotation.y, 0f);
 
-        if (fireCountDown <= 0f)
+        if (levels[currentLevel].fireCountDown <= 0f)
         {
-            if (splashDamage == true)
+            if (levels[currentLevel].splashDamage == true)
             {
-                fireCountDown = 1f * firerate;
+                levels[currentLevel].fireCountDown = 1f * levels[currentLevel].firerate;
                 print("splaashh");
                 SplashDamage();
             }
             else
             {
-                fireCountDown = 1f * firerate;
+                levels[currentLevel].fireCountDown = 1f * levels[currentLevel].firerate;
                 shoot();
             }
         }
-        fireCountDown -= Time.deltaTime;
+        levels[currentLevel].fireCountDown -= Time.deltaTime;
 
         if (target != null)
         {
@@ -105,20 +83,19 @@ public class TowerScript : MonoBehaviour
 
     void shoot()
     {
-        Physics.Raycast(transform.position, nearestEnemy.transform.position, out RaycastHit hit, range);
+        Physics.Raycast(transform.position, nearestEnemy.transform.position, out RaycastHit hit, levels[currentLevel].range);
         if (hit.transform.tag == tagName)
         {
-            target.GetComponent<NPCScript>().DoDamage(damage);
+            target.GetComponent<NPCScript>().DoDamage(levels[currentLevel].damage);
         }
 
         Debug.Log("Shoot");
 
-        Physics.Raycast(transform.position, turretRotation.forward, out hit, range);
+        Physics.Raycast(transform.position, turretRotation.forward, out hit, levels[currentLevel].range);
         
         if (hit.transform.tag == tagName)
-        {
-            
-            target.GetComponent<NPCScript>().hp -= damage;           
+        {            
+            target.GetComponent<NPCScript>().hp -= levels[currentLevel].damage;           
         }
             
     }
@@ -126,7 +103,7 @@ public class TowerScript : MonoBehaviour
             
     void SplashDamage()
     {
-       Collider[] enemies =  Physics.OverlapSphere(target.transform.position, splashRange);
+       Collider[] enemies =  Physics.OverlapSphere(target.transform.position, levels[currentLevel].splashRange);
         float distance;
         foreach(Collider Enemy in enemies)
         {
@@ -134,16 +111,36 @@ public class TowerScript : MonoBehaviour
            if(Enemy.transform.tag == tagName)
            {
                 print("splashdiddamage;");
-               Enemy.GetComponent<NPCScript>().DoDamage(damage - distance);
+                Enemy.GetComponent<NPCScript>().DoDamage(levels[currentLevel].damage - distance);  ;
            }
-
         }
-
     }
-       private void OnDrawGizmosSelected()
-       {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, range);   
 
-       }
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, levels[currentLevel].range);
+    }
+
+    public Levels[] levels;
+    public int currentLevel;
 }
+
+[System.Serializable]
+public class Levels
+{
+    [Header("Ranges")]
+
+    public float range;
+    public float minumumRange;
+    public float splashRange;
+
+    [Header("Gun Variables")]
+    public bool splashDamage;
+    public float damage;
+    public float health;
+    public float firerate;
+    public float fireCountDown = 0f;
+}
+
+
