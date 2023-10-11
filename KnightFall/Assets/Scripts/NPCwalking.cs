@@ -59,19 +59,16 @@ public class NPCwalking : MonoBehaviour
             agent.SetPath(pathToCastle);
             if (totalDistance < agent.remainingDistance)
             {
-                print("goes to wall");
                 agent.destination = currentWall.transform.position;
             }
             else
             {
-                print("goes to castle");
                 currentWall = null;
                 agent.destination = castle.transform.position;
             }
         }
         else
         {
-            print("goes to wall because obstructed");
             agent.destination = currentWall.transform.position;
         }
     }
@@ -88,7 +85,6 @@ public class NPCwalking : MonoBehaviour
         {
             if(cooldown <= 0f)
             {
-                print("does damage");
                 currentWall.GetComponent<WallInfo>().DoDamage(damage);
                 cooldown = attackCooldown;
             }

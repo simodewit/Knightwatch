@@ -1444,8 +1444,8 @@ MonoBehaviour:
     - {fileID: 944148867}
     - {fileID: 1111536215}
     spawnDescriptions:
-    - timeToSpawn: 4:50
-      enemiesToSpawn: 6
+    - timeToSpawn: 4:58
+      enemiesToSpawn: 1
       spawnInterval: 2
       enemies:
       - {fileID: 1570482771188727590, guid: c8f215c3f8afbd145bd5e1687141039f, type: 3}
