@@ -10,15 +10,18 @@ using static UnityEngine.InputSystem.InputAction;
 
 public class PlayerAttack : MonoBehaviour
 {
+    [Header("conditions")]
     public string enemieTagName;
     public float damage;
     public Vector3 boxOffset;
     public Vector3 colliderBoxSize;
     public GameObject empty;
-    public InputMaster input;
-    public InputAction move;
     public GameObject cam;
     public float rotateSpeed;
+
+    [Header("do not touch")]
+    public InputMaster input;
+    public InputAction move;
 
     private void Awake()
     {
@@ -57,7 +60,7 @@ public class PlayerAttack : MonoBehaviour
             {
                 if (collider.transform.tag == enemieTagName)
                 {
-                    collider.GetComponent<NPCScript>().DoDamage(damage);
+                    collider.GetComponent<NPCwalking>().DoDamage(Mathf.RoundToInt(damage));
                 }
             }
         }
