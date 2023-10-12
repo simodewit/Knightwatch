@@ -14,7 +14,6 @@ public class AudioMainMenu : MonoBehaviour
     {
         print(music.Length);
         print(randomized);
-        //UpdateAudioLevel();
     }
 
     public void Update()
@@ -24,7 +23,6 @@ public class AudioMainMenu : MonoBehaviour
 
     public void UpdateAudioLevel()
     {
-        print("updates audio");
         AudioListener.volume = PlayerPrefs.GetFloat("mainVolume");
 
         foreach (AudioSource source in SFXSounds)
@@ -42,8 +40,6 @@ public class AudioMainMenu : MonoBehaviour
     {
         if (music[randomized].isPlaying == true || (music[randomized].isPlaying == false && !Application.isFocused))
             return;                     
-
-        print("new number");
 
         if (randomizeTheMusic)
         {

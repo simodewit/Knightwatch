@@ -18,16 +18,16 @@ public class Timer : MonoBehaviour
     {
         if(buttonIsPressed == true)
         {
-            if(second <= 0)
+            if(second < 0)
             {
-                if(minute <= 0)
+                if(minute > 0)
                 {
-                    //stop game
+                    minute -= 1;
+                    second = 60;
                 }
                 else
                 {
-                    minute -= 1;
-                    second = 59;
+                    print("stop game");
                 }
             }
             else
@@ -51,6 +51,18 @@ public class Timer : MonoBehaviour
 
     public void convertToTime(int minutes, int seconds)
     {
-        text = minutes.ToString() + ":" + seconds.ToString();
+        if(seconds < 10)
+        {
+            text = minutes.ToString() + ":" + 0 + seconds.ToString();
+        }
+        else
+        {
+            text = minutes.ToString() + ":" + seconds.ToString();
+        }
+        if(seconds == 60)
+        {
+            int newMinutes = minutes + 1;
+            text = newMinutes.ToString() + ":" + "00";
+        }
     }
 }
