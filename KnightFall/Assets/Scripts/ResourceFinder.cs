@@ -6,6 +6,10 @@ using UnityEngine;
 
 public class ResourceFinder : MonoBehaviour
 {
+    [Header("scripts")]
+    public CounterForMaterials counterForMaterials;
+    public Info info;
+
     private float timer;
 
     public void Update()
@@ -35,25 +39,25 @@ public class ResourceFinder : MonoBehaviour
                 switch (hitCollider.GetComponent<Resource>().type)
                 {
                     case Resource.ResourceType.Wood:
-                        float newCountWood = counterInfo.wood + 1;
-                        counterInfo.wood = newCountWood;
+                        counterForMaterials.woodAmount += 1;
                         break;
 
                     case Resource.ResourceType.Stone:
-                        float newCountStone = counterInfo.stone + 1;
-                        counterInfo.stone = newCountStone;
+                        counterForMaterials.stoneAmount += 1;
                         break;
 
                     case Resource.ResourceType.Metal:
-                        float newCountMetal = counterInfo.metal + 1;
-                        counterInfo.metal = newCountMetal;
+                        counterForMaterials.metalAmount += 1;
+                        break;
+
+                    case Resource.ResourceType.coins:
+                        counterForMaterials.coinsAmount += 1;
                         break;
                 }
             }
         }
     }
-    public Info info;
-    public InfoForCounters counterInfo;
+    
 }
 
 [System.Serializable]

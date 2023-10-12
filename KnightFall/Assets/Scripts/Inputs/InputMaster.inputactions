@@ -49,6 +49,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "DevTool",
+                    "type": "Button",
+                    "id": "b7408a64-ba3f-4932-adb2-79174ae64b73",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -159,6 +168,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "MouseScroll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2a8f83b4-ee7e-47e0-b70f-6f79aec96ba8",
+                    "path": "<Keyboard>/minus",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DevTool",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

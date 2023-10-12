@@ -8,10 +8,14 @@ using UnityEngine.Windows;
 
 public class CameraFollow : MonoBehaviour
 {
+    [Header("conditions")]
+    public float scrollSpeed;
+    public float lerpspeed;
+    public Vector3 offset;
+
+    [Header("do not touch")]
     public GameObject player;
     public Rigidbody rb;
-    public Vector3 offset;
-    public float lerpspeed;
     public GameObject empty;
     public InputMaster input;
     public InputAction move;
@@ -34,6 +38,7 @@ public class CameraFollow : MonoBehaviour
 
     public void Start()
     {
+        empty = transform.parent.gameObject;
         rb = GetComponent<Rigidbody>();
         player = GameObject.Find("Player");
     }
@@ -41,16 +46,16 @@ public class CameraFollow : MonoBehaviour
     void Update()
     {
         float scrollPosition = move.ReadValue<float>();
-        //print(scrollPosition);
-
+        
         if(scrollPosition != 0f)
         {
+            print(scrollPosition);
             Vector3 moveAxis = new Vector3(0, 0, scrollPosition);
-            empty.transform.position += moveAxis;
-            Vector3 newOffset = (player.transform.position -= transform.position);
+            transform.position += moveAxis * scrollSpeed;
+            offset = (player.transform.position -= transform.position);
         }
 
-        Vector3 playerPositionWithOffset = new Vector3(player.transform.position.x +offset.x, player.transform.position.y +offset.y, player.transform.position.z +offset.z);
+        Vector3 playerPositionWithOffset = player.transform.position + offset;
         transform.position = Vector3.Lerp(transform.position, playerPositionWithOffset, lerpspeed * Time.deltaTime);
     }
 }

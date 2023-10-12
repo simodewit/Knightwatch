@@ -8,7 +8,8 @@ public class Resource : MonoBehaviour
     {
         Stone,
         Wood,
-        Metal
+        Metal,
+        coins
     }
 
     public ResourceType type;
