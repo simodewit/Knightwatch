@@ -2,38 +2,50 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 using static UnityEngine.GraphicsBuffer;
 
 public class NPCwalking : MonoBehaviour
 {
     [Header("conditions")]
+    public Slider slider;
     public int damage;
     public float distanceToAttack;
     public float attackCooldown;
     public int hp;
+    public string[] tags;
 
-    [Header("do not touch")]
+    [Header("DoNotTouch")]
     public GameObject castle;
     public GameObject[] walls;
     public NavMeshAgent agent;
-    public string[] tags;
-    float totalDistance = Mathf.Infinity;
+    public float totalDistance = Mathf.Infinity;
     public GameObject currentWall;
-    private float cooldown;
+    public float cooldown;
+    public float totalHP;
+    public float percentageHP;
 
     public void Start()
     {
         castle = GameObject.Find("Castle");
         agent = GetComponent<NavMeshAgent>();
+
+        totalHP = hp;
     }
 
     public void Update()
     {
         CalculatePath();
         DoesDamage();
+        HpUI();
+    }
+
+    public void HpUI()
+    {
+        percentageHP = hp / totalHP;
+        slider.value = percentageHP;
     }
 
     public void CalculatePath()
