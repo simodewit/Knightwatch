@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 public class TowerScript : MonoBehaviour
@@ -15,6 +16,8 @@ public class TowerScript : MonoBehaviour
 
     private Vector3 dir;
     private Vector3 rotation;
+
+    public ResourceValues resourcevalue;
 
     void Start()
     {
@@ -48,6 +51,8 @@ public class TowerScript : MonoBehaviour
     void Update()
     {
 
+
+        #region shooting stuff
         Vector3 dir = target.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(dir);
 
@@ -70,7 +75,7 @@ public class TowerScript : MonoBehaviour
             else
             {
                 levels[currentLevel].fireCountDown = 1f * levels[currentLevel].firerate;
-                shoot();
+                Shoot();
             }
         }
         levels[currentLevel].fireCountDown -= Time.deltaTime;
@@ -79,9 +84,15 @@ public class TowerScript : MonoBehaviour
         {
             return;
         }
+        #endregion
     }
 
-    void shoot()
+    public void SelectTower(GameObject tower)
+    {
+
+    }
+
+    void Shoot()
     {
         Physics.Raycast(transform.position, nearestEnemy.transform.position, out RaycastHit hit, levels[currentLevel].range);
         if (hit.transform.tag == tagName)
@@ -122,8 +133,27 @@ public class TowerScript : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, levels[currentLevel].range);
     }
 
+    private void LevelUp()
+    {
+        if (resourcevalue.coins >= levels[currentLevel].costValues[currentLevel].coinCost)
+        {
+            if(resourcevalue.wood >= levels[currentLevel].costValues[currentLevel].woodCost) 
+            {
+                if(resourcevalue.stone >= levels[currentLevel].costValues[currentLevel].stoneCost)
+                {
+                    if (resourcevalue.metal >= levels[currentLevel].costValues[currentLevel].metalCost)
+                    {
+                        currentLevel += 1;
+
+                    }
+                }
+            }
+        }
+    }
+
     public Levels[] levels;
     public int currentLevel;
+    public int maxLevel;    
 }
 
 [System.Serializable]
@@ -136,11 +166,27 @@ public class Levels
     public float splashRange;
 
     [Header("Gun Variables")]
+    
     public bool splashDamage;
     public float damage;
     public float health;
     public float firerate;
     public float fireCountDown = 0f;
+
+    [Header("Level platform")]
+    
+    public GameObject platform;
+
+    [Header("Level Cost")]
+    
+    public costValues[] costValues;
 }
 
-
+[System.Serializable]
+public class costValues
+{
+    public float coinCost;
+    public float woodCost;
+    public float stoneCost;
+    public float metalCost;
+}

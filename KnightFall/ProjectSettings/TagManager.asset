@@ -8,6 +8,8 @@ TagManager:
   - Worker
   - Enemy
   - Wall
+  - Castle
+  - Tower
   layers:
   - Default
   - TransparentFX
