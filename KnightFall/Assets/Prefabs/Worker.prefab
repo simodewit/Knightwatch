@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2838092027170303194}
   - component: {fileID: -6027719631789506886}
   - component: {fileID: 7023385399648322650}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Worker
   m_TagString: Worker
   m_Icon: {fileID: 0}
@@ -175,6 +175,8 @@ MonoBehaviour:
     woodAmountToGoUp: 2
     stoneAmountToGoUp: 2
     metalAmountToGoUp: 2
-    woodCounter: {fileID: 0}
-    stoneCounter: {fileID: 0}
-    metalCounter: {fileID: 0}
+  counterInfo:
+    coins: 0
+    wood: 0
+    stone: 0
+    metal: 0

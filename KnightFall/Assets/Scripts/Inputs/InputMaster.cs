@@ -71,6 +71,15 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""DevTool"",
+                    ""type"": ""Button"",
+                    ""id"": ""b7408a64-ba3f-4932-adb2-79174ae64b73"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -163,24 +172,46 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""91a1831f-2215-4aee-95df-1ff258b0e910"",
+                    ""name"": ""1D Axis"",
+                    ""id"": ""45ad2c1c-6b3c-4e3d-8e72-eb19fd4b7b87"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseScroll"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""ca1c036d-b513-4337-b1f4-63836adfd2b8"",
                     ""path"": ""<Mouse>/scroll/down"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""MouseScroll"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": false
+                    ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""78616fdd-d16b-4a64-9f55-d666e529bd7e"",
+                    ""name"": ""positive"",
+                    ""id"": ""2f184da0-6a46-4936-88c9-2fc1a5147426"",
                     ""path"": ""<Mouse>/scroll/up"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""MouseScroll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2a8f83b4-ee7e-47e0-b70f-6f79aec96ba8"",
+                    ""path"": ""<Keyboard>/minus"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DevTool"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -196,6 +227,7 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
         m_Movement3rdperson_MouseAction = m_Movement3rdperson.FindAction("MouseAction", throwIfNotFound: true);
         m_Movement3rdperson_MouseAction2 = m_Movement3rdperson.FindAction("MouseAction2", throwIfNotFound: true);
         m_Movement3rdperson_MouseScroll = m_Movement3rdperson.FindAction("MouseScroll", throwIfNotFound: true);
+        m_Movement3rdperson_DevTool = m_Movement3rdperson.FindAction("DevTool", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -262,6 +294,7 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
     private readonly InputAction m_Movement3rdperson_MouseAction;
     private readonly InputAction m_Movement3rdperson_MouseAction2;
     private readonly InputAction m_Movement3rdperson_MouseScroll;
+    private readonly InputAction m_Movement3rdperson_DevTool;
     public struct Movement3rdpersonActions
     {
         private @InputMaster m_Wrapper;
@@ -271,6 +304,7 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
         public InputAction @MouseAction => m_Wrapper.m_Movement3rdperson_MouseAction;
         public InputAction @MouseAction2 => m_Wrapper.m_Movement3rdperson_MouseAction2;
         public InputAction @MouseScroll => m_Wrapper.m_Movement3rdperson_MouseScroll;
+        public InputAction @DevTool => m_Wrapper.m_Movement3rdperson_DevTool;
         public InputActionMap Get() { return m_Wrapper.m_Movement3rdperson; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -295,6 +329,9 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
             @MouseScroll.started += instance.OnMouseScroll;
             @MouseScroll.performed += instance.OnMouseScroll;
             @MouseScroll.canceled += instance.OnMouseScroll;
+            @DevTool.started += instance.OnDevTool;
+            @DevTool.performed += instance.OnDevTool;
+            @DevTool.canceled += instance.OnDevTool;
         }
 
         private void UnregisterCallbacks(IMovement3rdpersonActions instance)
@@ -314,6 +351,9 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
             @MouseScroll.started -= instance.OnMouseScroll;
             @MouseScroll.performed -= instance.OnMouseScroll;
             @MouseScroll.canceled -= instance.OnMouseScroll;
+            @DevTool.started -= instance.OnDevTool;
+            @DevTool.performed -= instance.OnDevTool;
+            @DevTool.canceled -= instance.OnDevTool;
         }
 
         public void RemoveCallbacks(IMovement3rdpersonActions instance)
@@ -338,5 +378,6 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
         void OnMouseAction(InputAction.CallbackContext context);
         void OnMouseAction2(InputAction.CallbackContext context);
         void OnMouseScroll(InputAction.CallbackContext context);
+        void OnDevTool(InputAction.CallbackContext context);
     }
 }

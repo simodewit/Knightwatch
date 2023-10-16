@@ -5,27 +5,23 @@ using UnityEngine;
 
 public class CounterForMaterials : MonoBehaviour
 {
-    public GameObject coinsButton;
-    public GameObject woodButton;
-    public GameObject stoneButton;
-    public GameObject metalButton;
+    [Header("counters")]
+    public GameObject woodCounter;
+    public GameObject stoneCounter;
+    public GameObject metalCounter;
+    public GameObject coinsCounter;
+
+    [Header("ints for amounts")]
+    public float woodAmount;
+    public float stoneAmount;
+    public float metalAmount;
+    public float coinsAmount;
 
     public void Update()
     {
-        coinsButton.GetComponent<TextMeshProUGUI>().text = counterinfo.coins.ToString();
-        woodButton.GetComponent<TextMeshProUGUI>().text = counterinfo.wood.ToString();
-        stoneButton.GetComponent<TextMeshProUGUI>().text = counterinfo.stone.ToString();
-        metalButton.GetComponent<TextMeshProUGUI>().text = counterinfo.metal.ToString();
+        woodCounter.GetComponent<TextMeshProUGUI>().text = woodAmount.ToString();
+        stoneCounter.GetComponent<TextMeshProUGUI>().text = stoneAmount.ToString();
+        metalCounter.GetComponent<TextMeshProUGUI>().text = metalAmount.ToString();
+        coinsCounter.GetComponent<TextMeshProUGUI>().text = coinsAmount.ToString();
     }
-
-    public InfoForCounters counterinfo;
-}
-
-[System.Serializable]
-public class InfoForCounters
-{
-    public float coins;
-    public float wood;
-    public float stone;
-    public float metal;
 }

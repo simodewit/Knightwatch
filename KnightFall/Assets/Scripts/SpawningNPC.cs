@@ -8,6 +8,7 @@ public class SpawningNPC : MonoBehaviour
     public string timer;
     public Timer timerScript;
     public List<GameObject> currentAliveEnemys = new List<GameObject>();
+    public SpawnPlaces[] spawnPlaces;
 
     public void Start()
     {
@@ -24,7 +25,7 @@ public class SpawningNPC : MonoBehaviour
         timerScript.Init();
         timer = timerScript.text;
 
-        for(int a = 0; a < spawnPlaces.Length; a++)
+        for (int a = 0; a < spawnPlaces.Length; a++)
         {
             for (int i = 0; i < spawnPlaces[a].spawnDescriptions.Length; i++)
             {
@@ -36,11 +37,9 @@ public class SpawningNPC : MonoBehaviour
 
                         for (int j = 0; j < spawnPlaces[a].spawnDescriptions[i].enemiesToSpawn; j++)
                         {
-                            int indexForEnemyType = Random.Range(0, spawnPlaces[a].spawnDescriptions[i].enemies.Length);
-                            GameObject enemy = Instantiate(spawnPlaces[a].spawnDescriptions[i].enemies[indexForEnemyType]);
                             int indexForPlaceToSpawn = Random.Range(0, spawnPlaces[i].placesToSpawn.Length);
-                            enemy.transform.position = spawnPlaces[i].placesToSpawn[indexForPlaceToSpawn].transform.position;
-                            currentAliveEnemys.Add(enemy);
+                            int indexForEnemyType = Random.Range(0, spawnPlaces[a].spawnDescriptions[i].enemies.Length);
+                            GameObject enemy = Instantiate(spawnPlaces[a].spawnDescriptions[i].enemies[indexForEnemyType], spawnPlaces[i].placesToSpawn[indexForPlaceToSpawn].transform.position, Quaternion.identity);                            currentAliveEnemys.Add(enemy);
                             yield return new WaitForSeconds(spawnPlaces[a].spawnDescriptions[i].spawnInterval);
                         }
                     }
@@ -48,7 +47,6 @@ public class SpawningNPC : MonoBehaviour
             }
         }
     }
-    public SpawnPlaces[] spawnPlaces;
 }
 
 [System.Serializable]

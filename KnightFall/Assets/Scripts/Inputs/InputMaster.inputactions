@@ -49,6 +49,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "DevTool",
+                    "type": "Button",
+                    "id": "b7408a64-ba3f-4932-adb2-79174ae64b73",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -141,24 +150,46 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
-                    "id": "91a1831f-2215-4aee-95df-1ff258b0e910",
+                    "name": "1D Axis",
+                    "id": "45ad2c1c-6b3c-4e3d-8e72-eb19fd4b7b87",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MouseScroll",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "ca1c036d-b513-4337-b1f4-63836adfd2b8",
                     "path": "<Mouse>/scroll/down",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "MouseScroll",
                     "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
                 },
                 {
-                    "name": "",
-                    "id": "78616fdd-d16b-4a64-9f55-d666e529bd7e",
+                    "name": "positive",
+                    "id": "2f184da0-6a46-4936-88c9-2fc1a5147426",
                     "path": "<Mouse>/scroll/up",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "MouseScroll",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "2a8f83b4-ee7e-47e0-b70f-6f79aec96ba8",
+                    "path": "<Keyboard>/minus",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DevTool",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

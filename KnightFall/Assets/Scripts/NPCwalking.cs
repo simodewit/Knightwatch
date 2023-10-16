@@ -9,15 +9,19 @@ using static UnityEngine.GraphicsBuffer;
 
 public class NPCwalking : MonoBehaviour
 {
+    [Header("conditions")]
+    public int damage;
+    public float distanceToAttack;
+    public float attackCooldown;
+    public int hp;
+
+    [Header("do not touch")]
+    public GameObject castle;
     public GameObject[] walls;
     public NavMeshAgent agent;
-    public GameObject castle;
     public string[] tags;
     float totalDistance = Mathf.Infinity;
     public GameObject currentWall;
-    public float distanceToAttack;
-    public int damage;
-    public float attackCooldown;
     private float cooldown;
 
     public void Start()
@@ -59,19 +63,16 @@ public class NPCwalking : MonoBehaviour
             agent.SetPath(pathToCastle);
             if (totalDistance < agent.remainingDistance)
             {
-                print("goes to wall");
                 agent.destination = currentWall.transform.position;
             }
             else
             {
-                print("goes to castle");
                 currentWall = null;
                 agent.destination = castle.transform.position;
             }
         }
         else
         {
-            print("goes to wall because obstructed");
             agent.destination = currentWall.transform.position;
         }
     }
@@ -88,10 +89,19 @@ public class NPCwalking : MonoBehaviour
         {
             if(cooldown <= 0f)
             {
-                print("does damage");
                 currentWall.GetComponent<WallInfo>().DoDamage(damage);
                 cooldown = attackCooldown;
             }
+        }
+    }
+
+    public void DoDamage(int damage)
+    {
+        hp -= damage;
+
+        if(hp <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 }

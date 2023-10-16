@@ -8,37 +8,27 @@ using UnityEngine.Windows;
 
 public class TowerPlacement : MonoBehaviour
 {
+    [Header("conditions")]
     public GameObject backButton;
     public GameObject panel;
-    public GameObject[] towerInfo;
+    public GameObject[] towerPrefabs;
+    public LayerMask layer;
+    public CounterForMaterials counterForMaterials;
+
+    [Header("do not touch")]
     public InputMaster input;
     public InputAction move;
     public bool inBuildingPhase;
-    public LayerMask layer;
     private GameObject currentTower;
     private Vector2 mousePosition;
     public PlacingFromTowerScript towerScript;
     public Info info;
 
+    #region input
+
     private void Awake()
     {
         input = new InputMaster();
-    }
-
-    public void Update()
-    {
-        mousePosition = move.ReadValue<Vector2>();
-
-        if(inBuildingPhase == true)
-        {
-            Ray ray = GetComponent<Camera>().ScreenPointToRay(mousePosition);
-            
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity,layer))
-            {
-                currentTower.transform.position = hit.point;
-            }
-        }
     }
 
     private void OnEnable()
@@ -52,6 +42,24 @@ public class TowerPlacement : MonoBehaviour
         move.Disable();
     }
 
+#endregion
+
+    public void Update()
+    {
+        mousePosition = move.ReadValue<Vector2>();
+
+        if (inBuildingPhase == true)
+        {
+            Ray ray = GetComponent<Camera>().ScreenPointToRay(mousePosition);
+
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, layer))
+            {
+                currentTower.transform.position = hit.point;
+            }
+        }
+    }
+
     public void MouseButtonAction()
     {
         if (currentTower == null)
@@ -61,22 +69,22 @@ public class TowerPlacement : MonoBehaviour
 
         if (towerScript.collides == false && inBuildingPhase == true)
         {
-            if (counterInfo.coins < towerScript.coinsNeeded)
+            if (counterForMaterials.woodAmount < towerScript.woodNeeded)
                 return;
 
-            if (counterInfo.wood < towerScript.woodNeeded)
+            if (counterForMaterials.stoneAmount < towerScript.stoneNeeded)
                 return;
 
-            if (counterInfo.stone < towerScript.stoneNeeded)
+            if (counterForMaterials.metalAmount < towerScript.metalNeeded)
                 return;
 
-            if (counterInfo.metal < towerScript.metalNeeded)
+            if (counterForMaterials.coinsAmount < towerScript.coinsNeeded)
                 return;
 
-            counterInfo.coins -= towerScript.coinsNeeded;
-            counterInfo.wood -= towerScript.woodNeeded;
-            counterInfo.stone -= towerScript.stoneNeeded;
-            counterInfo.metal -= towerScript.metalNeeded;
+            counterForMaterials.woodAmount -= towerScript.woodNeeded;
+            counterForMaterials.stoneAmount -= towerScript.stoneNeeded;
+            counterForMaterials.metalAmount -= towerScript.metalNeeded;
+            counterForMaterials.coinsAmount -= towerScript.coinsNeeded;
 
             towerScript.gameObject.layer = default;
             backButton.SetActive(false);
@@ -96,20 +104,18 @@ public class TowerPlacement : MonoBehaviour
 
     public void OnClickTrap()
     {
-
+        Conditions(1);
     }
 
     public void OnClickKatapult()
     {
-
+        Conditions(2);
     }
 
     public void OnClickMuur()
     {
-
+        Conditions(3);
     }
-
-    #endregion
 
     public void BackButton()
     {
@@ -124,8 +130,8 @@ public class TowerPlacement : MonoBehaviour
         backButton.SetActive(true);
         panel.SetActive(false);
         inBuildingPhase = true;
-        currentTower = Instantiate(towerInfo[index]);
+        currentTower = Instantiate(towerPrefabs[index]);
     }
 
-    public InfoForCounters counterInfo;
+    #endregion
 }
