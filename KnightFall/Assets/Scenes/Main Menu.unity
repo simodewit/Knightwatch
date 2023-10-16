@@ -211,7 +211,7 @@ GameObject:
   - component: {fileID: 72348310}
   - component: {fileID: 72348312}
   m_Layer: 5
-  m_Name: Options
+  m_Name: Settings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -256,7 +256,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Options
+  m_text: 'Settings
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3d5f998ac5f43b648b7011d4037af5a4, type: 2}
   m_sharedMaterial: {fileID: -5934374027548668745, guid: 3d5f998ac5f43b648b7011d4037af5a4,
@@ -4086,7 +4088,7 @@ GameObject:
   - component: {fileID: 1240764554}
   - component: {fileID: 1240764556}
   m_Layer: 5
-  m_Name: Options
+  m_Name: Settings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7077,7 +7079,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2023249861}
   m_Layer: 5
-  m_Name: Options
+  m_Name: Settings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

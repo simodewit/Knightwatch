@@ -80,6 +80,15 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""EscMenu's"",
+                    ""type"": ""Button"",
+                    ""id"": ""a02f9fb9-51f6-4e7d-aa27-80d7bff5b00b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -214,6 +223,17 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
                     ""action"": ""DevTool"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f52e3da3-8561-4256-bc16-a39e7959979f"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EscMenu's"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -228,6 +248,7 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
         m_Movement3rdperson_MouseAction2 = m_Movement3rdperson.FindAction("MouseAction2", throwIfNotFound: true);
         m_Movement3rdperson_MouseScroll = m_Movement3rdperson.FindAction("MouseScroll", throwIfNotFound: true);
         m_Movement3rdperson_DevTool = m_Movement3rdperson.FindAction("DevTool", throwIfNotFound: true);
+        m_Movement3rdperson_EscMenus = m_Movement3rdperson.FindAction("EscMenu's", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -295,6 +316,7 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
     private readonly InputAction m_Movement3rdperson_MouseAction2;
     private readonly InputAction m_Movement3rdperson_MouseScroll;
     private readonly InputAction m_Movement3rdperson_DevTool;
+    private readonly InputAction m_Movement3rdperson_EscMenus;
     public struct Movement3rdpersonActions
     {
         private @InputMaster m_Wrapper;
@@ -305,6 +327,7 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
         public InputAction @MouseAction2 => m_Wrapper.m_Movement3rdperson_MouseAction2;
         public InputAction @MouseScroll => m_Wrapper.m_Movement3rdperson_MouseScroll;
         public InputAction @DevTool => m_Wrapper.m_Movement3rdperson_DevTool;
+        public InputAction @EscMenus => m_Wrapper.m_Movement3rdperson_EscMenus;
         public InputActionMap Get() { return m_Wrapper.m_Movement3rdperson; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -332,6 +355,9 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
             @DevTool.started += instance.OnDevTool;
             @DevTool.performed += instance.OnDevTool;
             @DevTool.canceled += instance.OnDevTool;
+            @EscMenus.started += instance.OnEscMenus;
+            @EscMenus.performed += instance.OnEscMenus;
+            @EscMenus.canceled += instance.OnEscMenus;
         }
 
         private void UnregisterCallbacks(IMovement3rdpersonActions instance)
@@ -354,6 +380,9 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
             @DevTool.started -= instance.OnDevTool;
             @DevTool.performed -= instance.OnDevTool;
             @DevTool.canceled -= instance.OnDevTool;
+            @EscMenus.started -= instance.OnEscMenus;
+            @EscMenus.performed -= instance.OnEscMenus;
+            @EscMenus.canceled -= instance.OnEscMenus;
         }
 
         public void RemoveCallbacks(IMovement3rdpersonActions instance)
@@ -379,5 +408,6 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
         void OnMouseAction2(InputAction.CallbackContext context);
         void OnMouseScroll(InputAction.CallbackContext context);
         void OnDevTool(InputAction.CallbackContext context);
+        void OnEscMenus(InputAction.CallbackContext context);
     }
 }

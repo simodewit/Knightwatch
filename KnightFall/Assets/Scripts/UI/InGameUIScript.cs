@@ -9,7 +9,7 @@ public class InGameUIScript : MonoBehaviour
 
     public void In()
     {
-       if(panel != null)
+        if(panel != null)
         {
             if(animator != null)
             {
@@ -19,7 +19,4 @@ public class InGameUIScript : MonoBehaviour
             }
         }
     }
-    
-
-
 }
