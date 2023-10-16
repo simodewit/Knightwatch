@@ -19,9 +19,9 @@ public class ResourceValues : MonoBehaviour
 
     public void ValueCounter()
     {
-        coins = value.counterInfo.coins;
-        wood = value.counterInfo.wood;
-        stone = value.counterInfo.stone;
-        metal = value.counterInfo.metal;
+        //coins = value.counterInfo.coins;
+        //wood = value.counterInfo.wood;
+        //stone = value.counterInfo.stone;
+        //metal = value.counterInfo.metal;
     }
 }

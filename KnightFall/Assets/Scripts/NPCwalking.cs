@@ -32,11 +32,11 @@ public class NPCwalking : MonoBehaviour
 
     public void Update()
     {
-        calculatePath();
+        CalculatePath();
         DoesDamage();
     }
 
-    public void calculatePath()
+    public void CalculatePath()
     {
         foreach(string tag in tags)
         {
