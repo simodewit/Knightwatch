@@ -2,15 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Windows;
 using UnityEngine.UI;
 using static UnityEngine.InputSystem.InputAction;
-using Unity.VisualScripting;
 using UnityEngine.SceneManagement;
 
 public class IngameUI : MonoBehaviour
 {
     [Header("panels")]
+    public GameObject mainPanel;
     public GameObject options;
     public GameObject settings;
     public GameObject controls;
@@ -26,7 +25,6 @@ public class IngameUI : MonoBehaviour
 
     [Header("other things")]
     public string sceneToLoadIfExit;
-    public Information[] info;
     public SoundsLevel1 audioScript;
     public AudioSource buttonClick;
 
@@ -71,26 +69,33 @@ public class IngameUI : MonoBehaviour
         {
             if (options.active)
             {
+                buttonClick.Play();
                 options.SetActive(false);
+                mainPanel.SetActive(true);
                 Time.timeScale = 1;
             }
             else if (settings.active)
             {
+                buttonClick.Play();
                 options.SetActive(true);
                 settings.SetActive(false);
             }
             else if (controls.active)
             {
+                buttonClick.Play();
                 options.SetActive(true);
                 controls.SetActive(false);
             }
             else if (backToMenu.active)
             {
+                buttonClick.Play();
                 options.SetActive(true);
                 backToMenu.SetActive(false);
             }
             else
             {
+                buttonClick.Play();
+                mainPanel.SetActive(false);
                 options.SetActive(true);
                 Time.timeScale = 0;
             }
@@ -99,42 +104,51 @@ public class IngameUI : MonoBehaviour
 
     public void SettingsButton()
     {
+        buttonClick.Play();
         options.SetActive(false);
         settings.SetActive(true);
     }
     public void ControlsButton()
     {
-        controls.SetActive(false);
-        settings.SetActive(true);
+        buttonClick.Play();
+        options.SetActive(false);
+        controls.SetActive(true);
     }
     public void QuitGameButton()
     {
-        backToMenu.SetActive(false);
-        settings.SetActive(true);
+        buttonClick.Play();
+        options.SetActive(false);
+        backToMenu.SetActive(true);
     }
 
     public void ResumeButton()
     {
+        buttonClick.Play();
         options.SetActive(false);
+        mainPanel.SetActive(true);
         Time.timeScale = 1;
     }
     public void BackButtonSettings()
     {
+        buttonClick.Play();
         settings.SetActive(false);
         options.SetActive(true);
     }
     public void BackButtonControls()
     {
+        buttonClick.Play();
         controls.SetActive(false);
         options.SetActive(true);
     }
     public void BackButtonQuitGame()
     {
+        buttonClick.Play();
         backToMenu.SetActive(false);
         options.SetActive(true);
     }
     public void BackToMainMenuButton()
     {
+        buttonClick.Play();
         Time.timeScale = 1;
         SceneManager.LoadScene(sceneToLoadIfExit);
     }
@@ -167,7 +181,7 @@ public class IngameUI : MonoBehaviour
         {
             resolutions.value = PlayerPrefs.GetInt("resolutions");
         }
-        Screen.SetResolution(info[resolutions.value].width, info[resolutions.value].height, fullscreen);
+        Screen.SetResolution(information[resolutions.value].width, information[resolutions.value].height, fullscreen);
     }
 
     #region settings
@@ -182,8 +196,18 @@ public class IngameUI : MonoBehaviour
 
     public void OptionsResolution()
     {
-        Screen.SetResolution(info[resolutions.value].width, info[resolutions.value].height, fullscreen);
+        Screen.SetResolution(information[resolutions.value].width, information[resolutions.value].height, fullscreen);
     }
 
     #endregion
+
+    public ResolutionsInfo[] information;
+}
+
+[SerializeField]
+
+public class ResolutionsInfo
+{
+    public int width;
+    public int height;
 }

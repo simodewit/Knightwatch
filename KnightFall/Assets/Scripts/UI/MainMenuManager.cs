@@ -128,11 +128,11 @@ public class MainMenuManager : MonoBehaviour
         Screen.SetResolution(info[resolutions.value].width, info[resolutions.value].height, fullscreen);
     }
 
-    public Information[] info;
+    public Resolutions[] info;
 }
 
 [SerializeField]
-public class Information
+public class Resolutions
 {
     public int width;
     public int height;
