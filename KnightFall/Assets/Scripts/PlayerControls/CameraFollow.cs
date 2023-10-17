@@ -60,13 +60,11 @@ public class CameraFollow : MonoBehaviour
 
         if(scrollPosition > 0)
         {
-            print("zooms in");
             offset.y -= 0.85f;
             offset.z += 0.5f;
         }
         if (scrollPosition < 0)
         {
-            print("zooms out");
             offset.y += 0.85f;
             offset.z -= 0.5f;
         }
