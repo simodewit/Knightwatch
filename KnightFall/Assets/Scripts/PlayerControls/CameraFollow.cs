@@ -12,11 +12,12 @@ public class CameraFollow : MonoBehaviour
     public float scrollSpeed;
     public float lerpspeed;
     public Vector3 offset;
+    public float maxDistance;
+    public float minDistance;
 
     [Header("do not touch")]
     public GameObject player;
     public Rigidbody rb;
-    public GameObject empty;
     public InputMaster input;
     public InputAction move;
 
@@ -38,24 +39,39 @@ public class CameraFollow : MonoBehaviour
 
     public void Start()
     {
-        empty = transform.parent.gameObject;
         rb = GetComponent<Rigidbody>();
         player = GameObject.Find("Player");
     }
 
     void Update()
     {
-        float scrollPosition = move.ReadValue<float>();
-        
-        if(scrollPosition != 0f)
+        float Input = move.ReadValue<float>();
+        float scrollPosition =  Input / 120;
+        float distance = Vector3.Distance(transform.position, player.transform.position);
+
+        if (distance > maxDistance && scrollPosition < 0)
         {
-            print(scrollPosition);
-            Vector3 moveAxis = new Vector3(0, 0, scrollPosition);
-            transform.position += moveAxis * scrollSpeed;
-            offset = (player.transform.position -= transform.position);
+            scrollPosition = 0;
+        }
+        if (distance < minDistance && scrollPosition > 0)
+        {
+            scrollPosition = 0;
         }
 
-        Vector3 playerPositionWithOffset = player.transform.position + offset;
-        transform.position = Vector3.Lerp(transform.position, playerPositionWithOffset, lerpspeed * Time.deltaTime);
+        if(scrollPosition > 0)
+        {
+            print("zooms in");
+            offset.y -= 0.85f;
+            offset.z += 0.5f;
+        }
+        if (scrollPosition < 0)
+        {
+            print("zooms out");
+            offset.y += 0.85f;
+            offset.z -= 0.5f;
+        }
+
+        Vector3 endPosition = player.transform.position + offset;
+        transform.position = Vector3.Lerp(transform.position, endPosition, lerpspeed * Time.deltaTime);
     }
 }
