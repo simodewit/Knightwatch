@@ -26,7 +26,7 @@ public class TowerScript : MonoBehaviour
         InvokeRepeating("TargetUpdate", 0f, 0.125f);
         levels[currentLevel].platform.SetActive(true);
         tower = this.gameObject;
-        currentLevel = currentLevel + 1;    
+    
         nextLevel = currentLevel + 1;
     }
 
@@ -45,7 +45,7 @@ public class TowerScript : MonoBehaviour
             }
         }
 
-        if(nearestEnemy != null && shortestDistance <= levels[currentLevel -1].range)
+        if(nearestEnemy != null && shortestDistance <= levels[currentLevel].range)
         {
             target = nearestEnemy.transform;
         }
@@ -55,11 +55,7 @@ public class TowerScript : MonoBehaviour
         }
     }
     void Update()
-    {   
-        
-
-
-
+    {           
         #region shooting stuff
         Vector3 dir = target.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(dir);
@@ -70,23 +66,23 @@ public class TowerScript : MonoBehaviour
         lookRotation = Quaternion.LookRotation( dir );
 
         Vector3 rotation = lookRotation.eulerAngles;
-        turretRotation.rotation = Quaternion.Euler(0f,rotation.y, 0f);
+        turretRotation.rotation = Quaternion.Euler(0f,rotation.y -90f, 0f);
 
-        if (levels[currentLevel - 1].fireCountDown <= 0f)
+        if (levels[currentLevel].fireCountDown <= 0f)
         {
-            if (levels[currentLevel - 1].splashDamage == true)
+            if (levels[currentLevel ].splashDamage == true)
             {
-                levels[currentLevel - 1].fireCountDown = 1f * levels[currentLevel].firerate;
+                levels[currentLevel ].fireCountDown = 1f * levels[currentLevel].firerate;
                 print("splaashh");
                 SplashDamage();
             }
             else
             {
-                levels[currentLevel - 1].fireCountDown = 1f * levels[currentLevel - 1].firerate;
+                levels[currentLevel ].fireCountDown = 1f * levels[currentLevel ].firerate;
                 Shoot();
             }
         }
-        levels[currentLevel - 1].fireCountDown -= Time.deltaTime;
+        levels[currentLevel ].fireCountDown -= Time.deltaTime;
 
         if (target != null)
         {
@@ -101,28 +97,19 @@ public class TowerScript : MonoBehaviour
         else
         {
             button.enabled=true;
-        }
-    
-
-    
+        }   
     }
 
-    public void SelectTower(GameObject tower)
-    {
+    //public void SelectTower(GameObject tower)
+    //{
 
-    }
+    //}
 
     void Shoot()
     {
-        Physics.Raycast(transform.position, nearestEnemy.transform.position, out RaycastHit hit, levels[currentLevel].range);
-        if (hit.transform.tag == tagName)
-        {
-            target.GetComponent<NPCScript>().DoDamage(levels[currentLevel].damage);
-        }
-
         Debug.Log("Shoot");
 
-        Physics.Raycast(transform.position, turretRotation.forward, out hit, levels[currentLevel].range);
+        Physics.Raycast(transform.position, turretRotation.forward, out RaycastHit hit, levels[currentLevel].range);
         
         if (hit.transform.tag == tagName)
         {            
@@ -136,13 +123,13 @@ public class TowerScript : MonoBehaviour
     {
        Collider[] enemies =  Physics.OverlapSphere(target.transform.position, levels[currentLevel -1].splashRange);
         float distance;
-        foreach(Collider Enemy in enemies)
+        foreach(Collider enemy in enemies)
         {
-            distance = Vector3.Distance(target.position, Enemy.transform.position);
-           if(Enemy.transform.tag == tagName)
+           distance = Vector3.Distance(target.position, enemy.transform.position);
+           if(enemy.transform.tag == tagName)
            {
                 print("splashdiddamage;");
-                Enemy.GetComponent<NPCScript>().DoDamage(levels[currentLevel - 1].damage - distance);  ;
+                enemy.GetComponent<NPCScript>().DoDamage(levels[currentLevel].damage - distance);
            }
         }
     }
@@ -153,50 +140,44 @@ public class TowerScript : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, levels[currentLevel].range);
     }
 
-    public void OnClickLevel()
-    {
-    }
+
     public void LevelUp()
     {
+
+
+        if (counterForMaterials.coinsAmount <= levels[currentLevel].costValues[currentLevel].coinCost)
+            return;
         
+        if (counterForMaterials.woodAmount <= levels[currentLevel].costValues[currentLevel].woodCost)
+            return;
+
+        if (counterForMaterials.stoneAmount <= levels[currentLevel].costValues[currentLevel].stoneCost)
+            return;
+
+        if (counterForMaterials.metalAmount <= levels[currentLevel].costValues[currentLevel].metalCost)
+            return;
         
-            //if (counterForMaterials.coinsAmount >= levels[currentLevel].costValues[currentLevel].coinCost)
-            //    return;
+        counterForMaterials.woodAmount -= levels[currentLevel].costValues[currentLevel].woodCost;
+        counterForMaterials.stoneAmount -= levels[currentLevel].costValues[currentLevel].stoneCost;
+        counterForMaterials.coinsAmount -= levels[currentLevel].costValues[currentLevel].coinCost;
+        counterForMaterials.metalAmount -= levels[currentLevel].costValues[currentLevel].metalCost;
 
-            //if (counterForMaterials.woodAmount >= levels[currentLevel].costValues[currentLevel].woodCost)
-            //    return;
-
-            //if (counterForMaterials.stoneAmount >= levels[currentLevel].costValues[currentLevel].stoneCost)
-            //    return;
-
-            //if (counterForMaterials.metalAmount >= levels[currentLevel].costValues[currentLevel].metalCost)
-            //    return;           
-            //counterForMaterials.woodAmount -= levels[currentLevel].costValues[currentLevel].woodCost;
-            //counterForMaterials.stoneAmount -= levels[currentLevel].costValues[currentLevel].stoneCost;
-            //counterForMaterials.coinsAmount -= levels[currentLevel].costValues[currentLevel].coinCost;
-            //counterForMaterials.metalAmount -= levels[currentLevel].costValues[currentLevel].metalCost;
-
-
-            levels[currentLevel -1].platform.SetActive(false);
-            currentLevel += 1;
-            levels[nextLevel - 1].platform.SetActive(true);
-            nextLevel += 1;
-            var pos = transform.position;
-            pos.y = levels[currentLevel -1].platformHeight;
-            transform.position = pos;
-                     
-                 
-              
+        levels[currentLevel ].platform.SetActive(false);
+        currentLevel += 1;
+        levels[nextLevel ].platform.SetActive(true);
+        nextLevel += 1;
+        Vector3 pos = transform.position;
+        pos.y = levels[currentLevel].platformHeight;
+        transform.position = pos;
            
-
-        
     }
 
-    public Levels[] levels;
+    
     public int currentLevel;
     public int nextLevel;
 
     public int maxLevel;   
+    public Levels[] levels;
     
 
 }
@@ -225,11 +206,11 @@ public class Levels
 
     [Header("Level Cost")]
     
-    public costValues[] costValues;
+    public CostValues[] costValues;
 }
 
 [System.Serializable]
-public class costValues
+public class CostValues
 {
     public float coinCost;
     public float woodCost;
