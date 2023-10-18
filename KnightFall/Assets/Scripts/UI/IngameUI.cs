@@ -23,10 +23,16 @@ public class IngameUI : MonoBehaviour
     public Toggle fullscreen;
     public Dropdown resolutions;
 
+    [Header("animation")]
+    public Animator animator;
+    public GameObject panel;
+
     [Header("other things")]
     public string sceneToLoadIfExit;
     public SoundsLevel1 audioScript;
     public AudioSource buttonClick;
+    public PlayerAttack playerAttackScript;
+    public ResolutionsInfo[] information;
 
     private InputMaster input;
     private InputAction esc;
@@ -56,11 +62,6 @@ public class IngameUI : MonoBehaviour
         GetAllValues();
     }
 
-    public void Update()
-    {
-        OptionsVolume();
-    }
-
     #region buttonActions
 
     public void InputInteraction(CallbackContext c)
@@ -73,6 +74,7 @@ public class IngameUI : MonoBehaviour
                 options.SetActive(false);
                 mainPanel.SetActive(true);
                 Time.timeScale = 1;
+                playerAttackScript.enabled = true;
             }
             else if (settings.active)
             {
@@ -98,6 +100,7 @@ public class IngameUI : MonoBehaviour
                 mainPanel.SetActive(false);
                 options.SetActive(true);
                 Time.timeScale = 0;
+                playerAttackScript.enabled = false;
             }
         }
     }
@@ -127,6 +130,7 @@ public class IngameUI : MonoBehaviour
         options.SetActive(false);
         mainPanel.SetActive(true);
         Time.timeScale = 1;
+        playerAttackScript.enabled = true;
     }
     public void BackButtonSettings()
     {
@@ -167,21 +171,21 @@ public class IngameUI : MonoBehaviour
         }
         if (PlayerPrefs.GetFloat("SFXVolume") != 0.5f)
         {
-            sfxVolume.SetValueWithoutNotify(PlayerPrefs.GetFloat("sfxVolume"));
+            sfxVolume.SetValueWithoutNotify(PlayerPrefs.GetFloat("SFXVolume"));
         }
-        if (PlayerPrefs.GetInt("fullscreen") == 0)
-        {
-            fullscreen.isOn = false;
-        }
-        else
-        {
-            fullscreen.isOn = true;
-        }
-        if (PlayerPrefs.GetInt("resolutions") != 0)
-        {
-            resolutions.value = PlayerPrefs.GetInt("resolutions");
-        }
-        Screen.SetResolution(information[resolutions.value].width, information[resolutions.value].height, fullscreen);
+        //if (PlayerPrefs.GetInt("fullscreen") == 0)
+        //{
+        //    fullscreen.isOn = false;
+        //}
+        //else
+        //{
+        //    fullscreen.isOn = true;
+        //}
+        //if (PlayerPrefs.GetInt("resolutions") != 0)
+        //{
+        //    resolutions.value = PlayerPrefs.GetInt("resolutions");
+        //}
+        //Screen.SetResolution(information[resolutions.value].width, information[resolutions.value].height, fullscreen);
     }
 
     #region settings
@@ -190,7 +194,7 @@ public class IngameUI : MonoBehaviour
     {
         PlayerPrefs.SetFloat("mainVolume", mainVolume.value);
         PlayerPrefs.SetFloat("musicVolume", musicVolume.value);
-        PlayerPrefs.SetFloat("sfxVolume", sfxVolume.value);
+        PlayerPrefs.SetFloat("SFXVolume", sfxVolume.value);
         audioScript.UpdateAudioLevel();
     }
 
@@ -201,10 +205,18 @@ public class IngameUI : MonoBehaviour
 
     #endregion
 
-    public ResolutionsInfo[] information;
+    public void PanelIn()
+    {
+        if (panel != null && animator != null)
+        {
+            bool IsOpen = animator.GetBool("OutAndIn");
+
+            animator.SetBool("OutAndIn", !IsOpen);
+        }
+    }
 }
 
-[SerializeField]
+[System.Serializable]
 
 public class ResolutionsInfo
 {

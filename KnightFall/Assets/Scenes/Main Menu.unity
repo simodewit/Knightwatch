@@ -1411,9 +1411,20 @@ MonoBehaviour:
   sceneName: Level1
   audioScript: {fileID: 1873294270}
   mainVolume: {fileID: 890977256}
-  SFXVolume: {fileID: 773695070}
+  sfxVolume: {fileID: 773695070}
   musicVolume: {fileID: 918864594}
   buttonClick: {fileID: 1873294272}
+  info:
+  - width: 3840
+    height: 2160
+  - width: 2560
+    height: 1440
+  - width: 2880
+    height: 1620
+  - width: 1920
+    height: 1080
+  - width: 1280
+    height: 720
 --- !u!1 &494247041
 GameObject:
   m_ObjectHideFlags: 0

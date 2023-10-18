@@ -22,6 +22,7 @@ public class MainMenuManager : MonoBehaviour
     public Slider sfxVolume;
     public Slider musicVolume;
     public AudioSource buttonClick;
+    public Resolutions[] info;
 
     private Dropdown resolutions;
     private Toggle fullscreen;
@@ -44,21 +45,21 @@ public class MainMenuManager : MonoBehaviour
         }
         if (PlayerPrefs.GetFloat("SFXVolume") != 0.5f)
         {
-            sfxVolume.SetValueWithoutNotify(PlayerPrefs.GetFloat("sfxVolume"));
+            sfxVolume.SetValueWithoutNotify(PlayerPrefs.GetFloat("SFXVolume"));
         }
-        if (PlayerPrefs.GetInt("fullscreen") == 0)
-        {
-            fullscreen.isOn = false;
-        }
-        else
-        {
-            fullscreen.isOn = true;
-        }
-        if(PlayerPrefs.GetInt("resolutions") != 0)
-        {
-            resolutions.value = PlayerPrefs.GetInt("resolutions");
-        }
-        Screen.SetResolution(info[resolutions.value].width, info[resolutions.value].height, fullscreen);
+        //if (PlayerPrefs.GetInt("fullscreen") == 0)
+        //{
+        //    fullscreen.isOn = false;
+        //}
+        //else
+        //{
+        //    fullscreen.isOn = true;
+        //}
+        //if(PlayerPrefs.GetInt("resolutions") != 0)
+        //{
+        //    resolutions.value = PlayerPrefs.GetInt("resolutions");
+        //}
+        //Screen.SetResolution(info[resolutions.value].width, info[resolutions.value].height, fullscreen);
     }
 
     public void OnClickPlay()
@@ -119,7 +120,7 @@ public class MainMenuManager : MonoBehaviour
     {
         PlayerPrefs.SetFloat("mainVolume", mainVolume.value);
         PlayerPrefs.SetFloat("musicVolume", musicVolume.value);
-        PlayerPrefs.SetFloat("sfxVolume", sfxVolume.value);
+        PlayerPrefs.SetFloat("SFXVolume", sfxVolume.value);
         audioScript.UpdateAudioLevel();
     }
 
@@ -127,11 +128,9 @@ public class MainMenuManager : MonoBehaviour
     {
         Screen.SetResolution(info[resolutions.value].width, info[resolutions.value].height, fullscreen);
     }
-
-    public Resolutions[] info;
 }
 
-[SerializeField]
+[System.Serializable]
 public class Resolutions
 {
     public int width;

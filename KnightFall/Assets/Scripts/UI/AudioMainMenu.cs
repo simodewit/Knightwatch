@@ -10,12 +10,6 @@ public class AudioMainMenu : MonoBehaviour
     public bool randomizeTheMusic;
     private int randomized;
 
-    public void Start()
-    {
-        print(music.Length);
-        print(randomized);
-    }
-
     public void Update()
     {
         ChooseSong();
