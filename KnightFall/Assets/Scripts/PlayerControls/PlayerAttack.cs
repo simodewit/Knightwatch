@@ -13,15 +13,17 @@ public class PlayerAttack : MonoBehaviour
     [Header("conditions")]
     public string enemieTagName;
     public float damage;
-    public Vector3 boxOffset;
     public Vector3 colliderBoxSize;
     public GameObject empty;
     public GameObject cam;
     public float rotateSpeed;
+    public float attackSpeed;
 
     [Header("do not touch")]
     public InputMaster input;
     public InputAction move;
+
+    private bool attacks;
 
     private void Awake()
     {
@@ -37,6 +39,11 @@ public class PlayerAttack : MonoBehaviour
     private void OnDisable()
     {
         move.Disable();
+    }
+
+    public void Start()
+    {
+        empty.transform.localPosition = new Vector3(0, 0, colliderBoxSize.z);
     }
 
     public void Update()
@@ -55,14 +62,25 @@ public class PlayerAttack : MonoBehaviour
     {
         if (c.started)
         {
-            Collider[] colliders = Physics.OverlapBox(empty.transform.position, colliderBoxSize, transform.rotation);
-            foreach (Collider collider in colliders)
+            if(attacks == false)
             {
-                if (collider.transform.tag == enemieTagName)
+                StartCoroutine(timesIfAttack());
+                Collider[] colliders = Physics.OverlapBox(empty.transform.position, colliderBoxSize, transform.rotation);
+                foreach (Collider collider in colliders)
                 {
-                    collider.GetComponent<NPCwalking>().DoDamage(Mathf.RoundToInt(damage));
+                    if (collider.transform.tag == enemieTagName)
+                    {
+                        collider.GetComponent<NPCwalking>().DoDamage(Mathf.RoundToInt(damage));
+                    }
                 }
             }
         }
+    }
+    
+    public IEnumerator timesIfAttack()
+    {
+        attacks = true;
+        yield return new WaitForSeconds(attackSpeed);
+        attacks = false;
     }
 }

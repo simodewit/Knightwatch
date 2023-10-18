@@ -2411,7 +2411,7 @@ Transform:
   m_GameObject: {fileID: 435851948}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.38}
+  m_LocalPosition: {x: 0, y: 0, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4419,12 +4419,11 @@ MonoBehaviour:
     - {fileID: 944148867}
     - {fileID: 1111536215}
     spawnDescriptions:
-    - timeToSpawn: 4:58
-      enemiesToSpawn: 1
+    - timeToSpawn: 4:55
+      enemiesToSpawn: 5
       spawnInterval: 2
       enemies:
-      - {fileID: 1570482771188727590, guid: c8f215c3f8afbd145bd5e1687141039f, type: 3}
-      - {fileID: 1570482771188727590, guid: a2d174c51eb62c04da4c1d5b4caab37b, type: 3}
+      - {fileID: 8267611860846349725, guid: 47ad4dbd506448d4398610a56a9a19ee, type: 3}
     notImportant:
       hasCompletedSpawning: 0
 --- !u!114 &723213490
@@ -9453,12 +9452,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemieTagName: Enemy
-  damage: 10
-  boxOffset: {x: 0, y: 0, z: 0.8}
-  colliderBoxSize: {x: 1, y: 2, z: 0.5}
+  damage: 25
+  colliderBoxSize: {x: 1, y: 2, z: 2.5}
   empty: {fileID: 435851948}
   cam: {fileID: 391913907}
   rotateSpeed: 0
+  attackSpeed: 2
   move:
     m_Name: Move
     m_Type: 0
@@ -11834,7 +11833,7 @@ MonoBehaviour:
   fullscreen: {fileID: 1579177333}
   resolutions: {fileID: 0}
   animator: {fileID: 2024687316}
-  slidingPanel: {fileID: 0}
+  slidingPanel: {fileID: 2024687314}
   sceneToLoadIfExit: MainMenu
   audioScript: {fileID: 988418159}
   buttonClick: {fileID: 1368519491}
