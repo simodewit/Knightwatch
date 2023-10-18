@@ -25,7 +25,7 @@ public class IngameUI : MonoBehaviour
 
     [Header("animation")]
     public Animator animator;
-    public GameObject panel;
+    public GameObject slidingPanel;
 
     [Header("other things")]
     public string sceneToLoadIfExit;
@@ -207,7 +207,7 @@ public class IngameUI : MonoBehaviour
 
     public void PanelIn()
     {
-        if (panel != null && animator != null)
+        if (slidingPanel != null && animator != null)
         {
             bool IsOpen = animator.GetBool("OutAndIn");
 
