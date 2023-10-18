@@ -47,26 +47,24 @@ public class CameraFollow : MonoBehaviour
     {
         float Input = move.ReadValue<float>();
         float scrollPosition =  Input / 120;
-        float distance = Vector3.Distance(transform.position, player.transform.position);
 
-        if (distance > maxDistance && scrollPosition < 0)
-        {
-            scrollPosition = 0;
-        }
-        if (distance < minDistance && scrollPosition > 0)
+        if(offset.y >= 27.1 && scrollPosition < 0)
         {
             scrollPosition = 0;
         }
 
-        if(scrollPosition > 0)
+        if(offset.y <= 10.95 && scrollPosition > 0)
         {
-            print("zooms in");
+            scrollPosition = 0;
+        }
+
+        if (scrollPosition > 0)
+        {
             offset.y -= 0.85f;
             offset.z += 0.5f;
         }
         if (scrollPosition < 0)
         {
-            print("zooms out");
             offset.y += 0.85f;
             offset.z -= 0.5f;
         }

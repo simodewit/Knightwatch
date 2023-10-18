@@ -5,11 +5,20 @@ using UnityEngine.Experimental.GlobalIllumination;
 
 public class DayNightCycle : MonoBehaviour
 {
-    public Timer timer;
-    public GameObject light;
+    [Header("global light settings")]
     public float minusUnits;
     public float totalRotation;
 
+    [Header("all lights settings")]
+    public string lightsOnTime;
+    public string tag;
+
+    [Header("scripts and gameobjects")]
+    public GameObject globalLight;
+    public Timer timer;
+
+    private bool lightsAreOn;
+    public GameObject[] lights;
     private float totalSeconds;
     private float newSeconds;
     private float secondsInPercentage;
@@ -24,6 +33,16 @@ public class DayNightCycle : MonoBehaviour
         newSeconds = timer.minute * 60 + timer.second;
 
         secondsInPercentage = newSeconds / totalSeconds * totalRotation;
-        light.transform.localEulerAngles = new Vector3(secondsInPercentage - minusUnits,0,0);
+        globalLight.transform.localEulerAngles = new Vector3(secondsInPercentage - minusUnits,0,0);
+
+        if(timer.text == lightsOnTime && lightsAreOn == false)
+        {
+            lightsAreOn = true;
+
+            foreach (GameObject light in lights)
+            {
+                light.active = true;
+            }
+        }
     }
 }

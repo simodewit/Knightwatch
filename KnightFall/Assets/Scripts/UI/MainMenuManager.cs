@@ -19,9 +19,10 @@ public class MainMenuManager : MonoBehaviour
     [Header("settings")]
     public AudioMainMenu audioScript;
     public Slider mainVolume;
-    public Slider SFXVolume;
+    public Slider sfxVolume;
     public Slider musicVolume;
     public AudioSource buttonClick;
+    public Resolutions[] info;
 
     private Dropdown resolutions;
     private Toggle fullscreen;
@@ -44,8 +45,21 @@ public class MainMenuManager : MonoBehaviour
         }
         if (PlayerPrefs.GetFloat("SFXVolume") != 0.5f)
         {
-            SFXVolume.SetValueWithoutNotify(PlayerPrefs.GetFloat("SFXVolume"));
+            sfxVolume.SetValueWithoutNotify(PlayerPrefs.GetFloat("SFXVolume"));
         }
+        //if (PlayerPrefs.GetInt("fullscreen") == 0)
+        //{
+        //    fullscreen.isOn = false;
+        //}
+        //else
+        //{
+        //    fullscreen.isOn = true;
+        //}
+        //if(PlayerPrefs.GetInt("resolutions") != 0)
+        //{
+        //    resolutions.value = PlayerPrefs.GetInt("resolutions");
+        //}
+        //Screen.SetResolution(info[resolutions.value].width, info[resolutions.value].height, fullscreen);
     }
 
     public void OnClickPlay()
@@ -106,7 +120,7 @@ public class MainMenuManager : MonoBehaviour
     {
         PlayerPrefs.SetFloat("mainVolume", mainVolume.value);
         PlayerPrefs.SetFloat("musicVolume", musicVolume.value);
-        PlayerPrefs.SetFloat("SFXVolume", SFXVolume.value);
+        PlayerPrefs.SetFloat("SFXVolume", sfxVolume.value);
         audioScript.UpdateAudioLevel();
     }
 
@@ -114,12 +128,10 @@ public class MainMenuManager : MonoBehaviour
     {
         Screen.SetResolution(info[resolutions.value].width, info[resolutions.value].height, fullscreen);
     }
-
-    public Information[] info;
 }
 
-[SerializeField]
-public class Information
+[System.Serializable]
+public class Resolutions
 {
     public int width;
     public int height;

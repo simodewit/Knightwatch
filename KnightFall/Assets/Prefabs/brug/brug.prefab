@@ -13,11 +13,11 @@ GameObject:
   - component: {fileID: 849310694034542195}
   m_Layer: 0
   m_Name: Point Light (5)
-  m_TagString: Untagged
+  m_TagString: Light
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5196594213268989404
 Transform:
   m_ObjectHideFlags: 0
@@ -131,11 +131,11 @@ GameObject:
   - component: {fileID: 8427957438475182386}
   m_Layer: 0
   m_Name: Point Light (6)
-  m_TagString: Untagged
+  m_TagString: Light
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &641432268529891654
 Transform:
   m_ObjectHideFlags: 0
@@ -249,11 +249,11 @@ GameObject:
   - component: {fileID: 5845777510000820689}
   m_Layer: 0
   m_Name: Point Light (1)
-  m_TagString: Untagged
+  m_TagString: Light
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1552354455976344370
 Transform:
   m_ObjectHideFlags: 0
@@ -367,11 +367,11 @@ GameObject:
   - component: {fileID: 8567775821077206968}
   m_Layer: 0
   m_Name: Point Light (2)
-  m_TagString: Untagged
+  m_TagString: Light
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7157381732153410854
 Transform:
   m_ObjectHideFlags: 0
@@ -485,11 +485,11 @@ GameObject:
   - component: {fileID: 4474990740378640879}
   m_Layer: 0
   m_Name: Point Light
-  m_TagString: Untagged
+  m_TagString: Light
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1329552030597559931
 Transform:
   m_ObjectHideFlags: 0
@@ -603,11 +603,11 @@ GameObject:
   - component: {fileID: 2558110696541129876}
   m_Layer: 0
   m_Name: Point Light (4)
-  m_TagString: Untagged
+  m_TagString: Light
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &259596104575210022
 Transform:
   m_ObjectHideFlags: 0
@@ -721,11 +721,11 @@ GameObject:
   - component: {fileID: 4767130163348251158}
   m_Layer: 0
   m_Name: Point Light (3)
-  m_TagString: Untagged
+  m_TagString: Light
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3491981933901759408
 Transform:
   m_ObjectHideFlags: 0
@@ -839,11 +839,11 @@ GameObject:
   - component: {fileID: 5104180434001442743}
   m_Layer: 0
   m_Name: Point Light (7)
-  m_TagString: Untagged
+  m_TagString: Light
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5116318346284276878
 Transform:
   m_ObjectHideFlags: 0

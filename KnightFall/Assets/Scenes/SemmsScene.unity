@@ -447,7 +447,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -512,8 +512,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbbb97947bd63f545b647396c0c06655, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 76476412}
-  panel: {fileID: 76476407}
 --- !u!1 &192882953
 GameObject:
   m_ObjectHideFlags: 0
