@@ -50,9 +50,13 @@ public class MouseInputForSelecting : MonoBehaviour
                 {
                     Deselect(hit.point);
                 }
-                else if(hit.transform.tag == "Worker")
+                else if (hit.transform.tag == "Worker")
                 {
                     Select(hit.transform.gameObject);
+                }
+                else if (hit.transform.tag == "Tower")
+                {
+                    TSelect(hit.transform.gameObject);
                 }
             }
         }
@@ -63,6 +67,13 @@ public class MouseInputForSelecting : MonoBehaviour
         selected = true;
         this.worker = worker;
         worker.GetComponent<Renderer>().material = yellowCollorShader;
+    }
+
+    public void TSelect(GameObject tower)
+    {
+        selected = true;
+        tower.GetComponent<Renderer>().material = yellowCollorShader;
+        
     }
 
     public void Deselect(Vector3 point)
