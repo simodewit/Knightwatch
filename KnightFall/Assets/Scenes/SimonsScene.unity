@@ -386,11 +386,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemieTagName: Enemy
   damage: 10
-  boxOffset: {x: 0, y: 0, z: 0.8}
   colliderBoxSize: {x: 1, y: 2, z: 0.5}
   empty: {fileID: 1430110176}
   cam: {fileID: 1486828280}
   rotateSpeed: 0
+  attackSpeed: 0
   move:
     m_Name: Move
     m_Type: 0
@@ -2557,7 +2557,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backButton: {fileID: 182642958}
-  panel: {fileID: 1277236759}
   towerPrefabs: []
   layer:
     serializedVersion: 2
@@ -2595,9 +2594,10 @@ MonoBehaviour:
   scrollSpeed: 0
   lerpspeed: 3
   offset: {x: 0, y: 12, z: -7}
+  maxDistance: 0
+  minDistance: 0
   player: {fileID: 0}
   rb: {fileID: 0}
-  empty: {fileID: 2013711000}
   move:
     m_Name: Move
     m_Type: 0
@@ -2727,7 +2727,6 @@ GameObject:
   - component: {fileID: 1611136132}
   - component: {fileID: 1611136134}
   - component: {fileID: 1611136133}
-  - component: {fileID: 1611136135}
   - component: {fileID: 1611136136}
   - component: {fileID: 1611136137}
   - component: {fileID: 1611136138}
@@ -2799,18 +2798,6 @@ MonoBehaviour:
       - {fileID: 1570482771188727590, guid: c8f215c3f8afbd145bd5e1687141039f, type: 3}
     notImportant:
       hasCompletedSpawning: 0
---- !u!114 &1611136135
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1611136131}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8085f9a5883141844b8bc5434316b45c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1611136136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2852,7 +2839,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPlace: {fileID: 966667587}
   worker: {fileID: 3844215043890381913, guid: fbe4ee8fca8b04f4bb3be026c8d81675, type: 3}
-  currentWorker: {fileID: 0}
 --- !u!114 &1611136138
 MonoBehaviour:
   m_ObjectHideFlags: 0

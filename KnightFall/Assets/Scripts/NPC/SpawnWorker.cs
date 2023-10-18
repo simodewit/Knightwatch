@@ -7,7 +7,7 @@ public class SpawnWorker : MonoBehaviour
 {
     public GameObject spawnPlace;
     public GameObject worker;
-    public GameObject currentWorker;
+    private GameObject currentWorker;
 
     public void Click()
     {

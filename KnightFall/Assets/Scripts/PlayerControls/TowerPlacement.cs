@@ -10,10 +10,10 @@ public class TowerPlacement : MonoBehaviour
 {
     [Header("conditions")]
     public GameObject backButton;
-    public GameObject panel;
     public GameObject[] towerPrefabs;
     public LayerMask layer;
     public CounterForMaterials counterForMaterials;
+    //public GameObject panel;
 
     [Header("do not touch")]
     public InputMaster input;
@@ -88,10 +88,10 @@ public class TowerPlacement : MonoBehaviour
 
             towerScript.gameObject.layer = default;
             backButton.SetActive(false);
-            panel.SetActive(true);
             inBuildingPhase = false;
             towerScript.IsPlaced();
             towerScript.enabled = false;
+            //panel.SetActive(true);
         }
     }
 
@@ -120,7 +120,7 @@ public class TowerPlacement : MonoBehaviour
     public void BackButton()
     {
         backButton.SetActive(false);
-        panel.SetActive(true);
+        //panel.SetActive(true);
         inBuildingPhase = false;
         Destroy(currentTower);
     }
@@ -128,7 +128,7 @@ public class TowerPlacement : MonoBehaviour
     public void Conditions(int index)
     {
         backButton.SetActive(true);
-        panel.SetActive(false);
+        //panel.SetActive(false);
         inBuildingPhase = true;
         currentTower = Instantiate(towerPrefabs[index]);
     }
