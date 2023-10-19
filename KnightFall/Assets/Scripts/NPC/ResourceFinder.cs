@@ -9,6 +9,8 @@ public class ResourceFinder : MonoBehaviour
     [Header("scripts")]
     public CounterForMaterials counterForMaterials;
     public Info info;
+    public Animation wood;
+    
 
     private float timer;
 
@@ -40,6 +42,7 @@ public class ResourceFinder : MonoBehaviour
                 {
                     case Resource.ResourceType.Wood:
                         counterForMaterials.woodAmount += 1;
+                        wood.Play();
                         break;
 
                     case Resource.ResourceType.Stone:
