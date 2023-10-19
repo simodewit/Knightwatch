@@ -16,6 +16,7 @@ public class NPCwalking : MonoBehaviour
     public float attackCooldown;
     public int hp;
     public string[] tags;
+    public float distanceToAttackPeople;
 
     [Header("DoNotTouch")]
     public GameObject castle;
@@ -26,6 +27,10 @@ public class NPCwalking : MonoBehaviour
     public float cooldown;
     public float totalHP;
     public float percentageHP;
+    public GameObject player;
+
+    private float currentDistance;
+    private GameObject personToTarget;
 
     public void Start()
     {
@@ -33,11 +38,13 @@ public class NPCwalking : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
 
         totalHP = hp;
+
+        player = GameObject.Find("Player");
     }
 
     public void Update()
     {
-        CalculatePath();
+        CalculatesWorkerDistance();
         DoesDamage();
         HpUI();
     }
@@ -48,14 +55,51 @@ public class NPCwalking : MonoBehaviour
         slider.value = percentageHP;
     }
 
+    public void DoDamage(int damage)
+    {
+        hp -= damage;
+
+        if(hp <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void CalculatesWorkerDistance()
+    {
+        currentDistance = Vector3.Distance(player.transform.position, transform.position);
+        personToTarget = player;
+        GameObject[] allWorkers;
+        allWorkers = GameObject.FindGameObjectsWithTag("Worker");
+        foreach (GameObject worker in allWorkers)
+        {
+            float newDistance;
+            newDistance = Vector3.Distance(worker.transform.position, transform.position);
+            if (newDistance <= currentDistance)
+            {
+                currentDistance = newDistance;
+                personToTarget = worker;
+            }
+        }
+
+        if (currentDistance <= distanceToAttackPeople)
+        {
+            agent.destination = personToTarget.transform.position;
+        }
+        else
+        {
+            CalculatePath();
+        }
+    }
+
     public void CalculatePath()
     {
-        foreach(string tag in tags)
+        foreach (string tag in tags)
         {
             walls = GameObject.FindGameObjectsWithTag(tag);
         }
 
-        foreach(GameObject wall in walls)
+        foreach (GameObject wall in walls)
         {
             float distanceNPCToWall = Vector3.Distance(transform.position, wall.transform.position);
             float distanceWallToCastle = Vector3.Distance(wall.transform.position, castle.transform.position);
@@ -91,29 +135,27 @@ public class NPCwalking : MonoBehaviour
 
     public void DoesDamage()
     {
-        if (currentWall == null)
-            return;
-
         cooldown -= Time.deltaTime;
-        float distance = Vector3.Distance(transform.position, currentWall.transform.position);
 
-        if(distance <= distanceToAttack)
+        if (cooldown <= 0f)
         {
-            if(cooldown <= 0f)
+            cooldown = attackCooldown;
+
+            if (Vector3.Distance(transform.position, personToTarget.transform.position) <= distanceToAttackPeople)
+            {
+                //does damage
+                return;
+            }
+
+            if (currentWall == null)
+                return;
+
+            float distance = Vector3.Distance(transform.position, currentWall.transform.position);
+
+            if (distance <= distanceToAttack)
             {
                 currentWall.GetComponent<WallInfo>().DoDamage(damage);
-                cooldown = attackCooldown;
             }
-        }
-    }
-
-    public void DoDamage(int damage)
-    {
-        hp -= damage;
-
-        if(hp <= 0)
-        {
-            Destroy(gameObject);
         }
     }
 }

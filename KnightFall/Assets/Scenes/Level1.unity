@@ -13105,8 +13105,8 @@ GameObject:
   - component: {fileID: 1354768446}
   - component: {fileID: 1354768445}
   - component: {fileID: 1354768444}
-  - component: {fileID: 1354768443}
   - component: {fileID: 1354768451}
+  - component: {fileID: 1354768443}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -13166,6 +13166,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: TowerPlacement, Assembly-CSharp
         m_MethodName: MouseButtonAction
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1354768451}
+        m_TargetAssemblyTypeName: MouseInputForSelecting, Assembly-CSharp
+        m_MethodName: InputInteraction
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -13234,12 +13246,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemieTagName: Enemy
-  damage: 25
+  damage: 50
   colliderBoxSize: {x: 1, y: 2, z: 2.5}
   empty: {fileID: 435851948}
   cam: {fileID: 391913907}
   rotateSpeed: 0
-  attackSpeed: 2
+  attackSpeed: 1
   move:
     m_Name: Move
     m_Type: 0

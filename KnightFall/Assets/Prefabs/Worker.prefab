@@ -169,14 +169,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccabe775cb5e5b74b943b8f4f8fd5be4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  counterForMaterials: {fileID: 0}
   info:
     radius: 2
     waitTimeForNextSpawn: 2
     woodAmountToGoUp: 2
     stoneAmountToGoUp: 2
     metalAmountToGoUp: 2
-  counterInfo:
-    coins: 0
-    wood: 0
-    stone: 0
-    metal: 0

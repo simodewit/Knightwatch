@@ -541,6 +541,7 @@ MonoBehaviour:
   hp: 100
   tags:
   - Wall
+  distanceToAttackPeople: 7
   castle: {fileID: 0}
   walls: []
   agent: {fileID: 0}
@@ -549,6 +550,7 @@ MonoBehaviour:
   cooldown: 0
   totalHP: 0
   percentageHP: 0
+  player: {fileID: 0}
 --- !u!195 &-1817351104873886335
 NavMeshAgent:
   m_ObjectHideFlags: 0
