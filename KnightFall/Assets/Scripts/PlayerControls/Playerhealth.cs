@@ -11,12 +11,19 @@ public class Playerhealth : MonoBehaviour
     {
         hp = maxhp;
     }
+    private void Update()
+    {
+        if (hp <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
     public void DoDamage(float damage)
     {
         hp -= damage;
         if (hp <= 0)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 }

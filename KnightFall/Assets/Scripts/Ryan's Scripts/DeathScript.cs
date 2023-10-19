@@ -7,55 +7,55 @@ using static UnityEngine.Rendering.DebugUI;
 public class DeathScript : MonoBehaviour
 {
     public GameObject player;
+    public GameObject currentPlayer;
     public Vector3 spawnPosition;
     public float minimumHeight;
     public Playerhealth playerhealth;
+    public CameraFollow cameraScript;
 
     public GameObject deathScreen;
     
     public GameObject deathCam;
     public GameObject mainCamera;
     public int respawnTime;
+
+    private bool spawns;
     
     public void Start()
-    {   
-        player.transform.position = spawnPosition;
+    {
+        
+        currentPlayer = GameObject.Instantiate(player);
         MainCamera();
         Vector3 pos = transform.position;
         pos.y = minimumHeight;
        
     }
     public void Update()
-    {
-        if(player.transform.position.y <= minimumHeight)
-        {
-            player.transform.position = spawnPosition;
-        }
+    {        
         
-        if(playerhealth.hp <= 0)
+        if(currentPlayer != null)
         {
-            //deathScreen.SetActive(true);
-            StartCoroutine(WaitForRespawn());
-            //player.SetActive(false);
-            Destroy(player);
-            DeathCamera();           
+            if (currentPlayer.GetComponent<Playerhealth>().hp <= 0)
+            {
+                if (spawns == false)
+                {
+                    spawns = true;
+                    //deathScreen.SetActive(true);
+                    StartCoroutine(WaitForRespawn());
+                    DeathCamera();
+                }
+            }
         }
-        else
-        {
-            MainCamera();
-        }
-
-   
     }
     public IEnumerator WaitForRespawn()
     {
         yield return new WaitForSeconds(respawnTime);
-        playerhealth.hp = playerhealth.maxhp;
-        player.transform.position = spawnPosition;       
-        //player.SetActive(true);
-        //deathScreen.SetActive(false);
+        currentPlayer = GameObject.Instantiate(player);
+        currentPlayer.transform.position = spawnPosition;
+        mainCamera.GetComponent<CameraFollow>().player = currentPlayer;
         MainCamera();
-        Instantiate(player);
+        //deathScreen.SetActive(false);
+        spawns = false;
     }
 
     public void MainCamera()

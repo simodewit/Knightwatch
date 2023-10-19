@@ -40,7 +40,7 @@ public class CameraFollow : MonoBehaviour
     public void Start()
     {
         rb = GetComponent<Rigidbody>();
-        player = GameObject.Find("Player");
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void Update()
