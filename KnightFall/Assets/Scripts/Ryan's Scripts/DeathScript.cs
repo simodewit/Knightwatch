@@ -1,21 +1,29 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 public class DeathScript : MonoBehaviour
 {
-    GameObject player;
+    public GameObject player;
     public Vector3 spawnPosition;
-    float minimumHeight;
+    public float minimumHeight;
     public Playerhealth playerhealth;
-    GameObject deathScreen;
+
+    public GameObject deathScreen;
+    
+    public GameObject deathCam;
+    public GameObject mainCamera;
+    public int respawnTime;
     
     public void Start()
-    {
+    {   
         player.transform.position = spawnPosition;
-        var pos = transform.position;
+        MainCamera();
+        Vector3 pos = transform.position;
         pos.y = minimumHeight;
-        deathScreen.SetActive(false);
+       
     }
     public void Update()
     {
@@ -26,11 +34,39 @@ public class DeathScript : MonoBehaviour
         
         if(playerhealth.hp <= 0)
         {
-            deathScreen.SetActive(true);
+            //deathScreen.SetActive(true);
+            StartCoroutine(WaitForRespawn());
+            //player.SetActive(false);
+            Destroy(player);
+            DeathCamera();           
+        }
+        else
+        {
+            MainCamera();
         }
 
-    
-    
+   
+    }
+    public IEnumerator WaitForRespawn()
+    {
+        yield return new WaitForSeconds(respawnTime);
+        playerhealth.hp = playerhealth.maxhp;
+        player.transform.position = spawnPosition;       
+        //player.SetActive(true);
+        //deathScreen.SetActive(false);
+        MainCamera();
+        Instantiate(player);
+    }
+
+    public void MainCamera()
+    {
+        mainCamera.SetActive(true);
+        deathCam.SetActive(false);
+    }
+    public void DeathCamera()
+    {
+        mainCamera.SetActive(false);
+        deathCam.SetActive(true);
     }
 
 

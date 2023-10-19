@@ -4,7 +4,6 @@ using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 
 public class TowerScript : MonoBehaviour
@@ -13,12 +12,8 @@ public class TowerScript : MonoBehaviour
     public string tagName = "Enemy";
     public Transform turretRotation;
     GameObject nearestEnemy = null;
-    NPCScript npcS;
     public GameObject tower;
-    private Vector3 dir;
-    private Vector3 rotation;
-    public UnityEngine.UI.Button button;
-
+    public Button button;
     public CounterForMaterials counterForMaterials;
 
     void Start()
@@ -100,11 +95,6 @@ public class TowerScript : MonoBehaviour
         }   
     }
 
-    //public void SelectTower(GameObject tower)
-    //{
-
-    //}
-
     void Shoot()
     {
         Debug.Log("Shoot");
@@ -143,24 +133,23 @@ public class TowerScript : MonoBehaviour
 
     public void LevelUp()
     {
-
-
-        if (counterForMaterials.coinsAmount <= levels[currentLevel].costValues[currentLevel].coinCost)
+        print(currentLevel);
+        if (counterForMaterials.coinsAmount <= levels[currentLevel].coinCost)
             return;
         
-        if (counterForMaterials.woodAmount <= levels[currentLevel].costValues[currentLevel].woodCost)
+        if (counterForMaterials.woodAmount <= levels[currentLevel].woodCost)
             return;
 
-        if (counterForMaterials.stoneAmount <= levels[currentLevel].costValues[currentLevel].stoneCost)
+        if (counterForMaterials.stoneAmount <= levels[currentLevel].stoneCost)
             return;
 
-        if (counterForMaterials.metalAmount <= levels[currentLevel].costValues[currentLevel].metalCost)
+        if (counterForMaterials.metalAmount <= levels[currentLevel].metalCost)
             return;
         
-        counterForMaterials.woodAmount -= levels[currentLevel].costValues[currentLevel].woodCost;
-        counterForMaterials.stoneAmount -= levels[currentLevel].costValues[currentLevel].stoneCost;
-        counterForMaterials.coinsAmount -= levels[currentLevel].costValues[currentLevel].coinCost;
-        counterForMaterials.metalAmount -= levels[currentLevel].costValues[currentLevel].metalCost;
+        counterForMaterials.woodAmount -= levels[currentLevel].woodCost;
+        counterForMaterials.stoneAmount -= levels[currentLevel].stoneCost;
+        counterForMaterials.coinsAmount -= levels[currentLevel].coinCost;
+        counterForMaterials.metalAmount -= levels[currentLevel].metalCost;
 
         levels[currentLevel ].platform.SetActive(false);
         currentLevel += 1;
@@ -170,6 +159,10 @@ public class TowerScript : MonoBehaviour
         pos.y = levels[currentLevel].platformHeight;
         transform.position = pos;
            
+        if(currentLevel + 1 == maxLevel)
+        {
+            button.gameObject.SetActive(false);
+        }
     }
 
     
@@ -205,13 +198,6 @@ public class Levels
     public float platformHeight;
 
     [Header("Level Cost")]
-    
-    public CostValues[] costValues;
-}
-
-[System.Serializable]
-public class CostValues
-{
     public float coinCost;
     public float woodCost;
     public float stoneCost;

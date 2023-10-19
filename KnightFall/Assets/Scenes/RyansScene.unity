@@ -1238,6 +1238,9 @@ MonoBehaviour:
   tower: {fileID: 0}
   button: {fileID: 0}
   counterForMaterials: {fileID: 0}
+  currentLevel: 0
+  nextLevel: 0
+  maxLevel: 0
   levels:
   - range: 0
     minumumRange: 0
@@ -1249,10 +1252,10 @@ MonoBehaviour:
     fireCountDown: 0
     platform: {fileID: 0}
     platformHeight: 0
-    costValues: []
-  currentLevel: 0
-  nextLevel: 0
-  maxLevel: 0
+    coinCost: 0
+    woodCost: 0
+    stoneCost: 0
+    metalCost: 0
 --- !u!65 &506539801
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2633,6 +2636,84 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!1001 &1310194060
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1570482771188727590, guid: a2d174c51eb62c04da4c1d5b4caab37b,
+        type: 3}
+      propertyPath: m_Name
+      value: Enemy 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2849843761265552027, guid: a2d174c51eb62c04da4c1d5b4caab37b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 27.713747
+      objectReference: {fileID: 0}
+    - target: {fileID: 2849843761265552027, guid: a2d174c51eb62c04da4c1d5b4caab37b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.97
+      objectReference: {fileID: 0}
+    - target: {fileID: 2849843761265552027, guid: a2d174c51eb62c04da4c1d5b4caab37b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 8.772683
+      objectReference: {fileID: 0}
+    - target: {fileID: 2849843761265552027, guid: a2d174c51eb62c04da4c1d5b4caab37b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2849843761265552027, guid: a2d174c51eb62c04da4c1d5b4caab37b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2849843761265552027, guid: a2d174c51eb62c04da4c1d5b4caab37b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2849843761265552027, guid: a2d174c51eb62c04da4c1d5b4caab37b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2849843761265552027, guid: a2d174c51eb62c04da4c1d5b4caab37b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2849843761265552027, guid: a2d174c51eb62c04da4c1d5b4caab37b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2849843761265552027, guid: a2d174c51eb62c04da4c1d5b4caab37b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5300005464672088294, guid: a2d174c51eb62c04da4c1d5b4caab37b,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5300005464672088294, guid: a2d174c51eb62c04da4c1d5b4caab37b,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a2d174c51eb62c04da4c1d5b4caab37b, type: 3}
 --- !u!1 &1320581041
 GameObject:
   m_ObjectHideFlags: 0
@@ -3164,8 +3245,11 @@ MonoBehaviour:
   tagName: Enemy
   turretRotation: {fileID: 619250781}
   tower: {fileID: 0}
-  button: {fileID: 0}
+  button: {fileID: 2139628622}
   counterForMaterials: {fileID: 1852515884}
+  currentLevel: 0
+  nextLevel: 0
+  maxLevel: 3
   levels:
   - range: 100
     minumumRange: 0
@@ -3177,11 +3261,10 @@ MonoBehaviour:
     fireCountDown: 0
     platform: {fileID: 321873559}
     platformHeight: 0.2
-    costValues:
-    - coinCost: 2
-      woodCost: 2
-      stoneCost: 2
-      metalCost: 2
+    coinCost: 1
+    woodCost: 1
+    stoneCost: 1
+    metalCost: 1
   - range: 100
     minumumRange: 0
     splashRange: 0
@@ -3192,11 +3275,10 @@ MonoBehaviour:
     fireCountDown: 0
     platform: {fileID: 922721452}
     platformHeight: 0.7
-    costValues:
-    - coinCost: 2
-      woodCost: 2
-      stoneCost: 2
-      metalCost: 2
+    coinCost: 1
+    woodCost: 1
+    stoneCost: 1
+    metalCost: 1
   - range: 100
     minumumRange: 0
     splashRange: 0
@@ -3207,14 +3289,10 @@ MonoBehaviour:
     fireCountDown: 0
     platform: {fileID: 1988320810}
     platformHeight: 1
-    costValues:
-    - coinCost: 2
-      woodCost: 2
-      stoneCost: 2
-      metalCost: 2
-  currentLevel: 0
-  nextLevel: 0
-  maxLevel: 3
+    coinCost: 1
+    woodCost: 1
+    stoneCost: 1
+    metalCost: 1
 --- !u!1 &1529093901
 GameObject:
   m_ObjectHideFlags: 0
@@ -5186,3 +5264,4 @@ SceneRoots:
   - {fileID: 2077688944}
   - {fileID: 101395191}
   - {fileID: 1497797535}
+  - {fileID: 1310194060}

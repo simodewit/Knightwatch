@@ -5,6 +5,12 @@ using UnityEngine;
 public class Playerhealth : MonoBehaviour
 {
     public float hp;
+    public float maxhp;
+
+    public void Start()
+    {
+        hp = maxhp;
+    }
     public void DoDamage(float damage)
     {
         hp -= damage;
