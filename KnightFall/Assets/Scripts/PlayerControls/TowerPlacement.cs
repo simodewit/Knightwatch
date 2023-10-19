@@ -13,16 +13,18 @@ public class TowerPlacement : MonoBehaviour
     public GameObject[] towerPrefabs;
     public LayerMask layer;
     public CounterForMaterials counterForMaterials;
-    //public GameObject panel;
+    public PlayerAttack attackScript;
+    public IngameUI uiScript;
 
     [Header("do not touch")]
-    public InputMaster input;
-    public InputAction move;
     public bool inBuildingPhase;
-    private GameObject currentTower;
-    private Vector2 mousePosition;
     public PlacingFromTowerScript towerScript;
     public Info info;
+    public InputMaster input;
+    public InputAction move;
+
+    private GameObject currentTower;
+    private Vector2 mousePosition;
 
     #region input
 
@@ -87,11 +89,10 @@ public class TowerPlacement : MonoBehaviour
             counterForMaterials.coinsAmount -= towerScript.coinsNeeded;
 
             towerScript.gameObject.layer = default;
-            backButton.SetActive(false);
             inBuildingPhase = false;
             towerScript.IsPlaced();
             towerScript.enabled = false;
-            //panel.SetActive(true);
+            attackScript.enabled = true;
         }
     }
 
@@ -102,7 +103,7 @@ public class TowerPlacement : MonoBehaviour
         Conditions(0);
     }
 
-    public void OnClickTrap()
+    public void OnCLickCrossbow()
     {
         Conditions(1);
     }
@@ -112,25 +113,30 @@ public class TowerPlacement : MonoBehaviour
         Conditions(2);
     }
 
-    public void OnClickMuur()
+    public void OnClickTrap()
     {
         Conditions(3);
     }
 
+    public void OnClickMuur()
+    {
+        Conditions(4);
+    }
+
     public void BackButton()
     {
-        backButton.SetActive(false);
-        //panel.SetActive(true);
         inBuildingPhase = false;
         Destroy(currentTower);
+        attackScript.enabled = true;
+        uiScript.PanelIn();
     }
 
     public void Conditions(int index)
     {
-        backButton.SetActive(true);
-        //panel.SetActive(false);
         inBuildingPhase = true;
         currentTower = Instantiate(towerPrefabs[index]);
+        attackScript.enabled = false;
+        uiScript.PanelIn();
     }
 
     #endregion

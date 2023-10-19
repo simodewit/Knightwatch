@@ -10,14 +10,17 @@ using static UnityEngine.InputSystem.InputAction;
 
 public class MouseInputForSelecting : MonoBehaviour
 {
+    [Header("conditions")]
     public Material normalTexture;
     public Material yellowCollorShader;
-    public InputMaster input;
-    public InputAction move;
+    public GameObject camera;
+
+    [Header("do not touch")]
     public Vector2 mousePosition;
     public bool selected;
     public GameObject worker;
-    public GameObject camera;
+    public InputMaster input;
+    public InputAction move;
 
     private void Awake()
     {
@@ -73,7 +76,6 @@ public class MouseInputForSelecting : MonoBehaviour
     {
         selected = true;
         tower.GetComponent<Renderer>().material = yellowCollorShader;
-        
     }
 
     public void Deselect(Vector3 point)

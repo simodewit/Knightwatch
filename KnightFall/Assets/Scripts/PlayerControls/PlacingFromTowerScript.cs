@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class PlacingFromTowerScript : MonoBehaviour
 {
-    public GameObject Camera;
-
-    public bool collides;
+    [Header("conditions")]
     public float radiusForCollision;
     public LayerMask layer;
-
     public float woodNeeded;
     public float stoneNeeded;
     public float metalNeeded;
     public float coinsNeeded;
+
+    [Header("do not touch")]
+    public bool collides;
+    public GameObject Camera;
 
     public void Start()
     {
