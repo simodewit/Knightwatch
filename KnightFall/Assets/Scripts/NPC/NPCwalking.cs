@@ -17,6 +17,9 @@ public class NPCwalking : MonoBehaviour
     public int hp;
     public string[] tags;
     public float distanceToAttackPeople;
+    public string playerTag;
+    public string workerTag;
+    public float distanceToChasePeople;
 
     [Header("DoNotTouch")]
     public GameObject castle;
@@ -82,7 +85,7 @@ public class NPCwalking : MonoBehaviour
             }
         }
 
-        if (currentDistance <= distanceToAttackPeople)
+        if (currentDistance <= distanceToChasePeople)
         {
             agent.destination = personToTarget.transform.position;
         }
@@ -143,8 +146,15 @@ public class NPCwalking : MonoBehaviour
 
             if (Vector3.Distance(transform.position, personToTarget.transform.position) <= distanceToAttackPeople)
             {
-                personToTarget.GetComponent<Playerhealth>().DoDamage(damage);
-                return;
+                if(personToTarget.tag == playerTag)
+                {
+                    personToTarget.GetComponent<Playerhealth>().DoDamage(damage);
+                    return;
+                }
+                if(personToTarget.tag == workerTag)
+                {
+                    //does damage to worker
+                }
             }
 
             if (currentWall == null)

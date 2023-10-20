@@ -535,19 +535,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 8382313417700243313}
-  damage: 0
-  distanceToAttack: 0
+  damage: 20
+  distanceToAttack: 3
   attackCooldown: 0
   hp: 100
   tags:
   - Wall
-  distanceToAttackPeople: 7
+  distanceToAttackPeople: 4
+  playerTag: Player
+  workerTag: 
   castle: {fileID: 0}
   walls: []
   agent: {fileID: 0}
   totalDistance: Infinity
   currentWall: {fileID: 0}
-  cooldown: 0
+  cooldown: 2
   totalHP: 0
   percentageHP: 0
   player: {fileID: 0}
