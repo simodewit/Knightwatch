@@ -143,7 +143,7 @@ public class NPCwalking : MonoBehaviour
 
             if (Vector3.Distance(transform.position, personToTarget.transform.position) <= distanceToAttackPeople)
             {
-                //does damage
+                personToTarget.GetComponent<Playerhealth>().DoDamage(damage);
                 return;
             }
 
