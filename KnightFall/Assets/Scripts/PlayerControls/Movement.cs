@@ -5,10 +5,11 @@ using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour
 {
+    [Header("conditions")]
     public float moveSpeed;
     public float rotateSpeed;
 
-    public Vector3 lookRotation; 
+    [Header("do not touch")]
     public Rigidbody rb;
     public InputMaster input;
     public InputAction move;

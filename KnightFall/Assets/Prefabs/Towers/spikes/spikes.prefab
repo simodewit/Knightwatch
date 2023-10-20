@@ -76,5 +76,83 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6dd647deaeffa3d4fafad02a051a69ee,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -6430249960402615851}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6dd647deaeffa3d4fafad02a051a69ee,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -7370147794511728833}
   m_SourcePrefab: {fileID: 100100000, guid: 6dd647deaeffa3d4fafad02a051a69ee, type: 3}
+--- !u!1 &3330485223541576211 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 6dd647deaeffa3d4fafad02a051a69ee,
+    type: 3}
+  m_PrefabInstance: {fileID: 2520093276505059138}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &-6430249960402615851
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3330485223541576211}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &-7370147794511728833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3330485223541576211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f82972b4147313e438acefac033cfbb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radiusForCollision: 3
+  layer:
+    serializedVersion: 2
+    m_Bits: 128
+  woodNeeded: 0
+  stoneNeeded: 0
+  metalNeeded: 0
+  coinsNeeded: 0
+  collides: 0
+  Camera: {fileID: 0}

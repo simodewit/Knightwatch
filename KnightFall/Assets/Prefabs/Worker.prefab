@@ -171,8 +171,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   counterForMaterials: {fileID: 0}
   info:
-    radius: 2
-    waitTimeForNextSpawn: 2
-    woodAmountToGoUp: 2
-    stoneAmountToGoUp: 2
-    metalAmountToGoUp: 2
+    radius: 3
+    waitTimeForNextSpawn: 1
+    woodAmountToGoUp: 1
+    stoneAmountToGoUp: 1
+    metalAmountToGoUp: 1

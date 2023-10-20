@@ -15,11 +15,11 @@ public class PlayerAttack : MonoBehaviour
     public float damage;
     public Vector3 colliderBoxSize;
     public GameObject empty;
-    public GameObject cam;
     public float rotateSpeed;
     public float attackSpeed;
 
     [Header("do not touch")]
+    public GameObject cam;
     public InputMaster input;
     public InputAction move;
 
@@ -44,6 +44,7 @@ public class PlayerAttack : MonoBehaviour
     public void Start()
     {
         empty.transform.localPosition = new Vector3(0, 0, colliderBoxSize.z);
+        cam = Camera.main.gameObject;
     }
 
     public void Update()

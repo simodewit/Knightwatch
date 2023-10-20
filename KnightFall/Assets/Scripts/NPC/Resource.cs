@@ -9,7 +9,6 @@ public class Resource : MonoBehaviour
         Stone,
         Wood,
         Metal,
-        coins
     }
 
     public ResourceType type;

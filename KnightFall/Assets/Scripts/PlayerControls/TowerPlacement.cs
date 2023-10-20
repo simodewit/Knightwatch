@@ -93,6 +93,7 @@ public class TowerPlacement : MonoBehaviour
             towerScript.IsPlaced();
             towerScript.enabled = false;
             attackScript.enabled = true;
+            currentTower = null;
         }
     }
 
@@ -100,27 +101,37 @@ public class TowerPlacement : MonoBehaviour
 
     public void OnCLickKanon()
     {
+        BackButton();
         Conditions(0);
-    }
-
-    public void OnCLickCrossbow()
-    {
-        Conditions(1);
+        uiScript.PanelIn();
     }
 
     public void OnClickKatapult()
     {
+        BackButton();
+        Conditions(1);
+        uiScript.PanelIn();
+    }
+
+    public void OnCLickCrossbow()
+    {
+        BackButton();
         Conditions(2);
+        uiScript.PanelIn();
     }
 
     public void OnClickTrap()
     {
+        BackButton();
         Conditions(3);
+        uiScript.PanelIn();
     }
 
     public void OnClickMuur()
     {
+        BackButton();
         Conditions(4);
+        uiScript.PanelIn();
     }
 
     public void BackButton()
