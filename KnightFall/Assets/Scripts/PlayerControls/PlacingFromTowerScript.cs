@@ -11,6 +11,7 @@ public class PlacingFromTowerScript : MonoBehaviour
     public float stoneNeeded;
     public float metalNeeded;
     public float coinsNeeded;
+    public Material[] materials;
 
     [Header("do not touch")]
     public bool collides;
