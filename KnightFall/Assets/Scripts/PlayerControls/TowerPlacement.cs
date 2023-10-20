@@ -71,7 +71,6 @@ public class TowerPlacement : MonoBehaviour
 
         if (towerScript.collides == false && inBuildingPhase == true)
         {
-            print("doesnt collide");
             if (counterForMaterials.woodAmount < towerScript.woodNeeded)
                 return;
 
@@ -89,7 +88,6 @@ public class TowerPlacement : MonoBehaviour
             counterForMaterials.metalAmount -= towerScript.metalNeeded;
             counterForMaterials.coinsAmount -= towerScript.coinsNeeded;
 
-            print("places");
             towerScript.gameObject.layer = default;
             inBuildingPhase = false;
             towerScript.IsPlaced();
