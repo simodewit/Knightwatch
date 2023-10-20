@@ -52,10 +52,6 @@ public class ResourceFinder : MonoBehaviour
                     case Resource.ResourceType.Metal:
                         counterForMaterials.metalAmount += 1;
                         break;
-
-                    case Resource.ResourceType.coins:
-                        counterForMaterials.coinsAmount += 1;
-                        break;
                 }
             }
         }
