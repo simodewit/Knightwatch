@@ -11,8 +11,12 @@ public class ResourceFinder : MonoBehaviour
     public Info info;
     public Animation wood;
     
-
     private float timer;
+
+    public void Start()
+    {
+        counterForMaterials = GameObject.Find("MainCanvas").GetComponent<CounterForMaterials>();
+    }
 
     public void Update()
     {

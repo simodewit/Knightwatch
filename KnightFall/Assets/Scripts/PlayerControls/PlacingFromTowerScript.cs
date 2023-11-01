@@ -11,7 +11,11 @@ public class PlacingFromTowerScript : MonoBehaviour
     public float stoneNeeded;
     public float metalNeeded;
     public float coinsNeeded;
-    public Material[] materials;
+
+    [Header("red normal and green highlight")]
+    public Material greenMaterial;
+    public Material redMaterial;
+    public Material normalMaterial;
 
     [Header("do not touch")]
     public bool collides;
@@ -31,17 +35,18 @@ public class PlacingFromTowerScript : MonoBehaviour
         {
             if(collides == false)
             {
-                GetComponent<Renderer>().material.SetFloat("_Index", 2);
+                GetComponent<Renderer>().material = greenMaterial;
             }
             else if(collides == true)
             {
-                GetComponent<Renderer>().material.SetFloat("_Index", 1);
+                GetComponent<Renderer>().material = redMaterial;
             }
         }
     }
 
     public void IsPlaced()
     {
-        GetComponent<Renderer>().material.SetFloat("_Index", 0);
+        GetComponent<Renderer>().material = normalMaterial;
+        GetComponent<Collider>().enabled = true;
     }
 }

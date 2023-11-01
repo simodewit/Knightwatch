@@ -70,8 +70,16 @@ public class NPCwalking : MonoBehaviour
 
     public void CalculatesWorkerDistance()
     {
-        currentDistance = Vector3.Distance(player.transform.position, transform.position);
-        personToTarget = player;
+        if(player != null)
+        {
+            currentDistance = Vector3.Distance(player.transform.position, transform.position);
+            personToTarget = player;
+        }
+        else
+        {
+            currentDistance = Mathf.Infinity;
+        }
+
         GameObject[] allWorkers;
         allWorkers = GameObject.FindGameObjectsWithTag("Worker");
         foreach (GameObject worker in allWorkers)
@@ -144,7 +152,7 @@ public class NPCwalking : MonoBehaviour
         {
             cooldown = attackCooldown;
 
-            if (Vector3.Distance(transform.position, personToTarget.transform.position) <= distanceToAttackPeople)
+            if (personToTarget != null && Vector3.Distance(transform.position, personToTarget.transform.position) <= distanceToAttackPeople)
             {
                 if(personToTarget.tag == playerTag)
                 {

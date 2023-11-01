@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: New Material
+  m_Name: New Material 2
   m_Shader: {fileID: -6465566751694194690, guid: 12f72f071dc418f439da59c02caff23d,
     type: 3}
   m_Parent: {fileID: 0}
@@ -128,7 +128,7 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _Index: 0
+    - _Index: 2
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
