@@ -537,14 +537,14 @@ MonoBehaviour:
   slider: {fileID: 8382313417700243313}
   damage: 20
   distanceToAttack: 3
-  attackCooldown: 2
+  attackCooldown: 1
   hp: 100
   tags:
   - Wall
-  distanceToAttackPeople: 4
+  distanceToAttackPeople: 2
   playerTag: Player
-  workerTag: 
-  distanceToChasePeople: 4
+  workerTag: Worker
+  distanceToChasePeople: 7.5
   castle: {fileID: 0}
   walls: []
   agent: {fileID: 0}

@@ -161,7 +161,8 @@ public class NPCwalking : MonoBehaviour
                 }
                 if(personToTarget.tag == workerTag)
                 {
-                    //does damage to worker
+                    personToTarget.GetComponent<Playerhealth>().DoDamage(damage);
+                    return;
                 }
             }
 

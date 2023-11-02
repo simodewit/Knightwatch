@@ -29,7 +29,7 @@ public class PlacingFromTowerScript : MonoBehaviour
 
     public void Update()
     {
-        collides = Physics.CheckSphere(transform.position, radiusForCollision, layer);
+        collides = Physics.CheckBox(transform.position, transform.localScale * .5f, Quaternion.identity, layer);
 
         if(Camera.GetComponent<TowerPlacement>().inBuildingPhase == true)
         {
