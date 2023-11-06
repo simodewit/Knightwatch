@@ -46,7 +46,6 @@ public class ResourceFinder : MonoBehaviour
                 {
                     case Resource.ResourceType.Wood:
                         counterForMaterials.woodAmount += 1;
-                        wood.Play();
                         break;
 
                     case Resource.ResourceType.Stone:

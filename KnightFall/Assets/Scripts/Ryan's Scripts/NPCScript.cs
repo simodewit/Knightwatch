@@ -16,7 +16,7 @@ public class NPCScript : MonoBehaviour
 
     public string tagName;
     public string tagNameCastle;
-    public WallScript w;
+    //public WallScript w;
 
      float wallDistanceCastle;
      float distanceToWall;

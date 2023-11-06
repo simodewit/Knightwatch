@@ -20,6 +20,7 @@ public class NPCwalking : MonoBehaviour
     public string playerTag;
     public string workerTag;
     public float distanceToChasePeople;
+    public float distanceToAttackCastle;
 
     [Header("DoNotTouch")]
     public GameObject castle;
@@ -164,6 +165,12 @@ public class NPCwalking : MonoBehaviour
                     personToTarget.GetComponent<Playerhealth>().DoDamage(damage);
                     return;
                 }
+            }
+
+            float distanceToCastle = Vector3.Distance(transform.position, castle.transform.position);
+            if (distanceToAttackCastle >= distanceToCastle)
+            {
+                castle.GetComponent<CastleScript>().DoDamage(damage);
             }
 
             if (currentWall == null)

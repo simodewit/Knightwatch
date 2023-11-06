@@ -545,6 +545,7 @@ MonoBehaviour:
   playerTag: Player
   workerTag: Worker
   distanceToChasePeople: 7.5
+  distanceToAttackCastle: 7
   castle: {fileID: 0}
   walls: []
   agent: {fileID: 0}
