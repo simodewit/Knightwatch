@@ -11,6 +11,7 @@ public class MainMenuManager : MonoBehaviour
 {
     [Header("Buttons/loading scene")]
     public GameObject main;
+    public GameObject levelPick;
     public GameObject options;
     public GameObject credits;
     public GameObject quitGame;
@@ -64,7 +65,8 @@ public class MainMenuManager : MonoBehaviour
 
     public void OnClickPlay()
     {
-        SceneManager.LoadScene(sceneName);
+        main.SetActive(false);
+        levelPick.SetActive(true);
         buttonClick.Play();
     }
 
@@ -108,6 +110,24 @@ public class MainMenuManager : MonoBehaviour
         quitGame.SetActive(false);
         main.SetActive(true);
         buttonClick.Play();
+    }
+
+    public void OnClickLevel1()
+    {
+        buttonClick.Play();
+        SceneManager.LoadScene("Level1");
+    }
+
+    public void OnClickLevel2()
+    {
+        buttonClick.Play();
+        SceneManager.LoadScene("Level2");
+    }
+
+    public void OnClickBackLevelPick()
+    {
+        levelPick.SetActive(false);
+        main.SetActive(true);
     }
 
     public void OnClickYesQuitGame()

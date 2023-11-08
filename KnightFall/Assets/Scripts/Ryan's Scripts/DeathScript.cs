@@ -23,7 +23,6 @@ public class DeathScript : MonoBehaviour
     
     public void Start()
     {
-        
         currentPlayer = GameObject.Instantiate(player);
         MainCamera();
         Vector3 pos = transform.position;

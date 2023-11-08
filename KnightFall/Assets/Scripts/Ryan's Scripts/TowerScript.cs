@@ -8,11 +8,14 @@ using UnityEngine.SceneManagement;
 
 public class TowerScript : MonoBehaviour
 {
+    [Header("refrences")]
+    public Transform turretRotation;
+    public GameObject tower;
+
+    [Header("do not touch")]
     public Transform target;
     public string tagName = "Enemy";
-    public Transform turretRotation;
     GameObject nearestEnemy = null;
-    public GameObject tower;
     public Button button;
     public CounterForMaterials counterForMaterials;
 
