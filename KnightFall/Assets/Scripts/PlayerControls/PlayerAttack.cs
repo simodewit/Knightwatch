@@ -22,6 +22,7 @@ public class PlayerAttack : MonoBehaviour
     public GameObject cam;
     public InputMaster input;
     public InputAction move;
+    public Animator anim;
 
     private bool attacks;
 
@@ -45,6 +46,7 @@ public class PlayerAttack : MonoBehaviour
     {
         empty.transform.localPosition = new Vector3(0, 0, colliderBoxSize.z);
         cam = Camera.main.gameObject;
+        anim = GetComponent<Animator>();
     }
 
     public void Update()
@@ -80,6 +82,7 @@ public class PlayerAttack : MonoBehaviour
     
     public IEnumerator timesIfAttack()
     {
+        anim.SetTrigger("Hit");
         attacks = true;
         yield return new WaitForSeconds(attackSpeed);
         attacks = false;
