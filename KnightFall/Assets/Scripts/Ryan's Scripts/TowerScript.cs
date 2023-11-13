@@ -127,13 +127,6 @@ public class TowerScript : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, levels[currentLevel].range);
-    }
-
-
     public void LevelUp()
     {
         print(currentLevel);
